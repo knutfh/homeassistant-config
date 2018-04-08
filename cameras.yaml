@@ -1,0 +1,12 @@
+  - platform: generic
+    still_image_url: !secret entrance_camera_url
+    name: Inngang
+  - platform: generic
+    still_image_url: !secret dog_camera_url
+    name: Hundehjørnet
+  - platform: generic
+    still_image_url: !secret puppy_camera_url
+    name: Valperom
+  - platform: generic
+    still_image_url: !secret gate_camera_url
+    name: Port

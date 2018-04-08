@@ -1,32 +1,24 @@
 homeassistant:
-  # Name of the location where Home Assistant is running
   name: Villa Bazinga
-  # Location required to calculate the time the sun rises and sets
   latitude: !secret home_lat
   longitude: !secret home_lon
-  # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 140
-  # metric for Metric, imperial for Imperial
   unit_system: metric
-  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/Oslo
-  # Customization file
-  customize: !include customize.yaml
-  
-  customize_glob:
-    "sensor.bathroom_relay*":
-      hidden: true
-    "sensor.kitchen_dimmer_*":
-      hidden: true
+  customize: !include customize.yaml  
+  customize_glob: !include customize_glob.yaml
+    
 
-
-frontend:
 config:
-updater:
-discovery:
 conversation:
+discovery:
+frontend:
 history:
 logbook:
+map:
+sun:
+updater:
+
 
 http:
   api_password: !secret http_password
@@ -50,16 +42,15 @@ zwave:
   polling_interval: 45000
   device_config:
     
-    switch.bad_taklys:
+    switch.bathroom_ceiling_light:
       polling_intensity: 1
       refresh_value: True
     
-    switch.bad_vifte:
+    switch.bathroom_fan:
       polling_intensity: 1
       refresh_value: True
       
     
-
 ############################################
 # Zoneminder
 ############################################
@@ -68,37 +59,7 @@ zwave:
 #  username: !secret zm_username
 #  password: !secret zm_password
 
-
-camera:
-  - platform: generic
-    still_image_url: !secret entrance_camera_url
-    name: Inngang
-  - platform: generic
-    still_image_url: !secret dog_camera_url
-    name: Hundehjørnet
-  - platform: generic
-    still_image_url: !secret puppy_camera_url
-    name: Valperom
-  - platform: generic
-    still_image_url: !secret gate_camera_url
-    name: Port
-
-  
-
-
-
-############################################
-# Enable IDE in main menu
-############################################
-panel_iframe:
-  ide:
-    title: IDE
-    icon: mdi:code-braces
-    url: !secret ide_url
-
-
-
-
+ 
 influxdb:
   host: 172.17.0.5
   username: !secret influxdb_username
@@ -119,36 +80,35 @@ influxdb:
   tags:
     source: hass
 
-# Enables a map showing the location of tracked devices
-map:
 
-# Track the sun
-sun:
+# Text to speech
+tts:
+  - platform: google
+    language: 'no'
 
 
+# Trådfri
+tradfri:
+  allow_tradfri_groups: False
+
+
+# Cloud
+cloud:
 
 
 ############################################
-# Includes
+# Enable IDE in main menu
 ############################################
-
-automation: !include_dir_merge_list automation
-input_select: !include_dir_merge_named input_select
-group: !include groups.yaml
-homekit: !include homekit.yaml
-script: !include scripts.yaml
-zone: !include_dir_merge_list zone
-#input_number: !include input-numbers.yamls
-scene: !include_dir_merge_list scenes
-light: !include lights.yaml
-sensor: !include_dir_merge_list sensors
-binary_sensor: !include binary_sensors.yaml
+panel_iframe:
+  ide:
+    title: IDE
+    icon: mdi:code-braces
+    url: !secret ide_url
 
 
 ############################################
 # Device Trackers
 ############################################
-
 device_tracker:
   - platform: asuswrt
     host: !secret router_ip
@@ -159,19 +119,6 @@ device_tracker:
   - platform: owntracks_http
     max_gps_accuracy: 200
 
-
-# Text to speech
-tts:
-  - platform: google
-    language: 'no'
-
-# Trådfri
-tradfri:
-  allow_tradfri_groups: False
-
-
-# Cloud
-cloud:
 
 ############################################
 # Notifications
@@ -185,7 +132,21 @@ notify:
     name: simon
     target: !secret simon_ios_push_key
 
-switch:
-  platform: rfxtrx
-  automatic_add: True
+
+############################################
+# Includes
+############################################
+
+automation: !include_dir_merge_list automation
+binary_sensor: !include binary_sensors.yaml
+camera: !include cameras.yaml
+group: !include groups.yaml
+homekit: !include homekit.yaml
+input_select: !include_dir_merge_named input_select
+light: !include lights.yaml
+scene: !include_dir_merge_list scenes
+sensor: !include_dir_merge_list sensors
+script: !include scripts.yaml
+switch: !include_dir_merge_list switches
+zone: !include_dir_merge_list zone
   
