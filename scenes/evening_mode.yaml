@@ -1,0 +1,26 @@
+- name: Kveldsmodus
+  entities:
+    light.inngang:
+      state: on
+      brightness_pct: 5
+    light.taklys_gang:
+      state: on
+      brightness_pct: 5
+    light.dimmer_kjokken_level:
+      state: off
+    light.horus:
+      state: off
+    light.trapp:
+      state: off
+    light.hund_1:
+      state: off
+    light.hund_2:
+      state: on
+      brightness_pct: 10
+    light.hund_3:
+      state: off
+    light.hund_4:
+      state: off
+    light.horus_3:
+      state: on
+      brightness_pct: 10

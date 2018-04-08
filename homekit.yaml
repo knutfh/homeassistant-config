@@ -1,0 +1,22 @@
+
+  auto_start: False
+  filter:
+    include_entities:
+      - light.nattbordslampe
+      - light.taklys_gang
+      - light.soverom
+      - light.horus
+      - light.trapp
+      - light.hundehjrnet
+      - light.inngang
+      - light.stuelys
+      - light.valperom
+      - light.spisebord
+      - switch.bathroom_fan
+      - switch.bathroom_ceiling_light
+      - sensor.bathroom_temperature
+      - sensor.bathroom_relative_humidity
+      - sensor.efergy_672729
+      - scene.kveldsmodus
+      - scene.nattmodus
+      - scene.morgenmodus

@@ -1,0 +1,143 @@
+# Automations for controlling the presence status of my familiy.
+# This is taken directly from Phil Hawthorne's website.
+# https://philhawthorne.com/making-home-assistants-presence-detection-not-so-binary/
+
+
+- alias: Mark person as just arrived
+  trigger:
+    - platform: state
+      entity_id: device_tracker.knut_iphone
+      from: 'not_home'
+      to: 'home'
+      for:
+        minutes: 1
+    - platform: state
+      entity_id: device_tracker.simon_iphone
+      from: 'not_home'
+      to: 'home'
+      for:
+        minutes: 1
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'device_tracker.knut_iphone' %}
+            input_select.knut_status_dropdown
+          {% else %}
+            input_select.simon_status_dropdown
+          {% endif %}
+        option: Just Arrived
+ 
+ 
+- alias: Mark person as home
+  trigger:
+    - platform: state
+      entity_id: input_select.knut_status_dropdown
+      to: 'Just Arrived'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.simon_status_dropdown
+      to: 'Just Arrived'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.knut_status_dropdown
+      from: 'Just Left'
+      to: 'Just Arrived'
+    - platform: state
+      entity_id: input_select.simon_status_dropdown
+      from: 'Just Left'
+      to: 'Just Arrived'
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'input_select.knut_status_dropdown' %}
+            input_select.knut_status_dropdown
+          {% else %}
+            input_select.simon_status_dropdown
+          {% endif %}
+        option: Home
+        
+        
+- alias: Mark person as just left
+  trigger:
+    - platform: state
+      entity_id: device_tracker.knut_iphone
+      from: 'home'
+      to: 'not_home'
+      for:
+        minutes: 2
+    - platform: state
+      entity_id: device_tracker.simon_iphone
+      from: 'home'
+      to: 'not_home'
+      for:
+        minutes: 2
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'device_tracker.knut_iphone' %}
+            input_select.knut_status_dropdown
+          {% else %}
+            input_select.simon_status_dropdown
+          {% endif %}
+        option: Just Left
+    - service: notify.ios_knut_iphone
+      data_template:
+        message: >
+          {% if trigger.entity_id == 'device_tracker.knut_iphone' %}
+            "Knut just left"
+          {% else %}
+            "Simon just left"
+          {% endif %}
+        
+        
+- alias: Mark person as away
+  trigger:
+    - platform: state
+      entity_id: input_select.knut_status_dropdown
+      to: 'Just Left'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.simon_status_dropdown
+      to: 'Just Left'
+      for:
+        minutes: 10
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'input_select.knut_status_dropdown' %}
+            input_select.knut_status_dropdown
+          {% else %}
+            input_select.simon_status_dropdown
+          {% endif %}
+        option: Away
+        
+        
+- alias: Mark person as extended away
+  trigger:
+    - platform: state
+      entity_id: input_select.knut_status_dropdown
+      to: 'Away'
+      for:
+        hours: 24
+    - platform: state
+      entity_id: input_select.simon_status_dropdown
+      to: 'Away'
+      for:
+        hours: 24
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'input_select.knut_status_dropdown' %}
+            input_select.knut_status_dropdown
+          {% else %}
+            input_select.simon_status_dropdown
+          {% endif %}
+        option: Extended Away

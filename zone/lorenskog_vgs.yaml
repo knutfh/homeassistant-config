@@ -1,0 +1,5 @@
+- name: Lørenskog VGS
+  latitude: !secret lorenskog_vgs_lat
+  longitude: !secret lorenskog_vgs_lon
+  radius: 250
+  icon: mdi:work

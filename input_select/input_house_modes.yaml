@@ -1,0 +1,9 @@
+house_mode:
+  name: Husmodus
+  options:
+    - Dag
+    - Natt
+    - Bortreist
+    - Gjestemodus
+  initial: Dag
+  icon: mdi:home

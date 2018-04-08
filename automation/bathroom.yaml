@@ -1,0 +1,69 @@
+- alias: Turn on bathroom lights
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bathroom_movement
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: switch.bathroom_ceiling_light
+    state: 'off'
+  - condition: numeric_state
+    entity_id: sensor.bathroom_luminance
+    below: '600'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: switch.bathroom_ceiling_light
+    # - service: notify.ios_knut_iphone
+    #   data:
+    #     message: "Baderomslys PÅ"
+    
+- alias: Turn off bathroom lights
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bathroom_movement
+    to: 'off'
+    for:
+      minutes: '5'
+  condition: 
+  - condition: state
+    entity_id: 'switch.bathroom_ceiling_light'
+    state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.bathroom_ceiling_light
+    # - service: notify.ios_knut_iphone
+    #   data:
+    #     message: "Baderomslys AV"
+        
+- alias: Bathroom fan ON
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.bathroom_relative_humidity
+    above: '45'
+  condition:
+  - condition: state
+    entity_id: 'switch.bathroom_fan'
+    state: 'off'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: switch.bathroom_fan
+    - service: notify.ios_knut_iphone
+      data:
+        message: "Vifte bad PÅ"
+        
+
+- alias: Bathroom fan OFF
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.bathroom_relative_humidity
+    below: '38'
+  condition:
+  - condition: state
+    entity_id: 'switch.bathroom_fan'
+    state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.bathroom_fan
+    - service: notify.ios_knut_iphone
+      data:
+        message: "Vifte bad AV"

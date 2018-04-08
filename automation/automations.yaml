@@ -1,0 +1,72 @@
+# Activate night mode on mon-thu + sunday
+- alias: "Activate night mode"
+  trigger:
+    platform: time
+    at: '01:00:00'
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - sun
+    - condition: state
+      entity_id: group.people
+      state: home
+  action:
+    - service: scene.turn_on
+      entity_id:
+      - scene.nattmodus
+    - service: notify.ios_knut_iphone
+      data:
+        message: "Nattmodus aktivert"
+
+# Activate night mode on mon-thu + sunday
+- alias: "Activate evening mode"
+  trigger:
+    platform: time
+    at: '23:00:00'
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - sun
+    - condition: state
+      entity_id: group.people
+      state: home
+  action:
+    - service: scene.turn_on
+      entity_id:
+      - scene.kveldsmodus
+    - service: notify.ios_knut_iphone
+      data:
+        message: "Kveldsmodus aktivert"
+
+
+# Activate morning mode on weekdays
+- alias: "Activate morning mode"
+  trigger:
+    platform: time
+    at: '05:15:00'
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    - condition: state
+      entity_id: group.people
+      state: home
+  action:
+    - service: scene.turn_on
+      entity_id: 
+      - scene.morgenmodus
+    - service: notify.ios_knut_iphone
+      data:
+        message: "Morgenmodus aktivert"

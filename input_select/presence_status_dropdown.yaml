@@ -1,0 +1,19 @@
+knut_status_dropdown:
+  name: Knut
+  options:
+    - Home
+    - Just Arrived
+    - Just Left
+    - Away
+    - Extended Away
+  initial: Home
+
+simon_status_dropdown:
+  name: Simon
+  options:
+    - Home
+    - Just Arrived
+    - Just Left
+    - Away
+    - Extended Away
+  initial: Home

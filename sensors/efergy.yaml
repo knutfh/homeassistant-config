@@ -1,0 +1,7 @@
+- platform: efergy
+  app_token: !secret efergy_app_token
+  utc_offset: +1
+  monitored_variables:
+    - type: current_values
+    - type: amount
+      period: day

@@ -1,0 +1,214 @@
+sensor.efergy_672729:
+  friendly_name: Effekt sanntid
+  
+sensor.energy_consumed:
+  friendly_name: Forbruk idag
+  
+sensor.perdevice_usage:
+  hidden: true
+
+sensor.6620_battery_level:
+  hidden: true
+
+sensor.6620_battery_level_2:
+  hidden: true
+
+sensor.6620_battery_level_3:
+  hidden: true
+
+sensor.6620_battery_level_4:
+  hidden: true
+
+sensor.6620_battery_state:
+  hidden: true
+
+sensor.6620_battery_state_2:
+  hidden: true
+
+sensor.6620_battery_state_3:
+  hidden: true
+
+sensor.6620_battery_state_4:
+  hidden: true
+
+sensor.knut_flages_ipad_battery_level:
+  hidden: true
+
+sensor.knut_flages_ipad_battery_level_2:
+  hidden: true
+
+sensor.knut_flages_ipad_battery_state:
+  hidden: true
+
+sensor.knut_flages_ipad_battery_state_2:
+  hidden: true
+
+sensor.simon_tien_sin_iphone_battery_level:
+  hidden: true
+
+sensor.simon_tien_sin_iphone_battery_state:
+  hidden: true
+
+device_tracker.gwdcefcab834ed:
+  hidden: true
+
+switch.bathroom_fan:
+  icon: mdi:fan
+  homebridge_visible: true
+  
+switch.bathroom_ceiling_light:
+  icon: mdi:spotlight-beam
+  homebridge_visible: true
+  
+sensor.bathroom_relative_humidity:
+  icon: mdi:water-percent
+  
+sensor.bathroom_luminance:
+  icon: mdi:white-balance-sunny
+
+sensor.bathroom_motion:
+  icon: mdi:human-greeting
+
+
+sensor.knut_status:
+  entity_picture: !secret knut_picture
+
+sensor.simon_status:
+  entity_picture: !secret simon_picture
+  
+
+############################################
+# Lights
+############################################
+  
+light.gang:
+  hidden: true
+light.horus_1:
+  hidden: true
+light.horus_2:
+  hidden: true
+light.horus_3:
+  hidden: true
+light.horus_4:
+  hidden: true
+light.horus_5:
+  hidden: true
+light.horus_6:
+  hidden: true
+light.horus_7:
+  hidden: true
+light.horus_8:
+  hidden: true
+light.horus_9:
+  hidden: true
+light.horus_10:
+  hidden: true
+light.trapp_1:
+  hidden: true
+light.trapp_2:
+  hidden: true
+light.trapp_3:
+  hidden: true
+light.trapp_4:
+  hidden: true
+light.trapp_5:
+  hidden: true
+light.trapp_6:
+  hidden: true
+light.trapp_7:
+  hidden: true
+light.trapp_8:
+  hidden: true
+light.hund_1:
+  hidden: true
+light.hund_2:
+  hidden: true
+light.hund_3:
+  hidden: true
+light.hund_4:
+  hidden: true
+light.soverom_1:
+  hidden: true  
+light.soverom_2:
+  hidden: true  
+light.valperom_1:
+  hidden: true
+light.valperom_2:
+  hidden: true
+light.valperom_3:
+  hidden: true
+light.horus:
+  hidden: true
+light.trapp:
+  hidden: true
+light.hundehjrnet:
+  hidden: true
+light.kitchen_dimmer_level_2:
+  hidden: true
+  
+light.kitchen_dimmer_level:
+  friendly_name: Taklys kjøkken
+  icon: mdi:ceiling-light
+  
+light.horus_:
+  friendly_name: Horus
+  icon: mdi:ceiling-light
+  
+light.trapp_:
+  friendly_name: Trapp
+  icon: mdi:ceiling-light
+  
+light.hundehjrnet_:
+  friendly_name: Hundehjørnet
+  icon: mdi:ceiling-light
+  
+light.stuelys:
+  icon: mdi:ceiling-light
+  homebridge_visible: true
+  
+light.soverom:
+  icon: mdi:ceiling-light
+  homebridge_visible: true
+  
+light.taklys_gang:
+  icon: mdi:ceiling-light
+  homebridge_visible: true
+
+light.inngang:
+  icon: mdi:ceiling-light
+  
+light.nattbordslampe:
+  assumed_state: false
+  icon: mdi:lamp
+  homebridge_visible: true
+
+sensor.bad_relay_alarm_level:
+  hidden: true
+  
+binary_sensor.bad_sensor:
+  hidden: true
+  
+sensor.bathroom_sourcenodeid:
+  hidden: true
+  
+
+############################################
+# Unhide default groups
+############################################ 
+group.all_automations:
+  hidden: false
+
+group.all_lights:
+  hidden: false
+
+group.all_remotes:
+  hidden: false
+  
+group.all_scripts:
+  hidden: false
+
+group.people_status:
+  hidden: false
+  
+group.all_scenes:
+  hidden: false

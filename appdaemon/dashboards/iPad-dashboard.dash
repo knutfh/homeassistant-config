@@ -1,0 +1,114 @@
+title: Villa Bazinga
+widget_dimensions: [130, 130]
+widget_margins: [8, 8]
+columns: 8
+
+taklys_gang:
+  widget_type: light
+  title: Taklys gang
+  entity: light.taklys_gang
+  icon_on: mdi-ceiling-light
+  icon_off: mdi-ceiling-light
+  on_attributes:
+    brightness: 155
+    
+taklys_soverom:
+  widget_type: light
+  title: Taklys soverom
+  entity: light.soverom
+  icon_on: mdi-ceiling-light
+  icon_off: mdi-ceiling-light
+  on_attributes:
+    brightness: 64
+    
+nattbordslampe_soverom:
+  widget_type: light
+  title: Nattbordslampe
+  entity: light.nattbordslampe
+  icon_on: mdi-lamp
+  icon_off: mdi-lamp
+  
+house_mode:
+  widget_type: input_select
+  entity: input_select.house_mode
+  title: Husmodus
+  
+hundcam:
+  widget_type: camera
+  title: Hundehjørnet
+  refresh: 5
+  frame_style: ""
+  entity_picture: !secret dog_camera_url_dashboard
+  
+inngangcam:
+  widget_type: camera
+  title: Inngang
+  refresh: 5
+  frame_style: ""
+  entity_picture: !secret entrance_camera_url_dashboard
+
+valpecam:
+  widget_type: camera
+  title: Valperom
+  refresh: 5
+  frame_style: ""
+  entity_picture: !secret puppy_camera_url_dashboard
+
+portcam:
+  widget_type: camera
+  title: Port
+  refresh: 5
+  frame_style: ""
+  entity_picture: !secret gate_camera_url_dashboard
+  
+clock:
+  widget_type: clock
+  time_format: "24hr"
+  date_format_country: "no"
+  date_format_options:
+    weekday: "long"
+    day: "numeric"
+    month: "numeric"
+    
+    
+simon_presence:
+  widget_type: device_tracker
+  title: Simon
+  device: simon_iphone
+  
+knut_presence:
+  widget_type: device_tracker
+  title: Knut
+  device: knut_iphone
+  
+outdoor_temperature:
+  widget_type: sensor
+  title: Utetemperatur
+  units: "&deg;C"
+  precision: 0
+  entity: sensor.utetemperatur_temperature
+  
+night_mode:
+  widget_type: scene
+  title: Nattmodus
+  entity: scene.nattmodus
+  icon_on: mdi-weather-night
+  icon_off: mdi-weather-night
+  
+taklys_bad:
+  widget_type: switch
+  title: Taklys bad
+  entity: switch.bathroom_ceiling_light
+  icon_on: mdi-ceiling-light
+  icon_off: mdi-ceiling-light
+
+
+
+layout:
+ - clock(2x1), inngangcam(3x2), hundcam(3x2)
+ - simon_presence, knut_presence
+ - outdoor_temperature, night_mode, valpecam(3x2), portcam(3x2)
+ - taklys_soverom, nattbordslampe_soverom
+ - taklys_gang, taklys_bad
+ #- valpecam(3x2), portcam(3x2)
+
