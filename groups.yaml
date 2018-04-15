@@ -16,6 +16,7 @@ default_view:
     - group.lights_livingroom
     - group.weather
     - group.all_cameras
+    - camera.meteogram
 
 system_view:
   view: yes
