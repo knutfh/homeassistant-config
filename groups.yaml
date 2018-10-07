@@ -6,7 +6,7 @@ default_view:
   name: Hjem
   entities:
     - sensor.efergy_672729
-    - device_tracker.knut_iphone
+    - device_tracker.knut_bayesian
     - device_tracker.simon_iphone
     - sensor.valperom_temperature
     - sensor.stue_temperature
@@ -46,6 +46,7 @@ lights_livingroom:
     - light.trapp_
     - light.hundehjrnet_
     - light.spisebord
+    - light.valpehage
     
 lights_other:
   name: Andre lys
@@ -59,20 +60,20 @@ lights_bedroom:
   name: Soverom
   control: hidden
   entities:
-    - light.soverom
-    - light.nattbordslampe
+    - light.bedroom
+    - light.bed_light
+    - light.basement
 
 bad_view:
   name: Bad
   control: hidden
   entities:
-    - sensor.bathroom_temperature
-    - sensor.bathroom_relative_humidity
-    - sensor.bathroom_luminance
-  #  - sensor.bathroom_motion
+    - sensor.bathroom_multisensor_temperature
+    - sensor.bathroom_multisensor_relative_humidity
+    - sensor.bathroom_multisensor_luminance
     - binary_sensor.bathroom_movement
-    - switch.bathroom_ceiling_light
-    - switch.bathroom_fan
+    - switch.bathroom_relay_ceiling_light
+    - switch.bathroom_relay_fan
 
 weather:
   name: Været
@@ -125,6 +126,7 @@ scenes:
     - scene.kveldsmodus
     - scene.nattmodus
     - scene.morgenmodus
+    - scene.evening_work
     
 all_cameras:
   name: Kameraer
@@ -139,8 +141,8 @@ zwave_units:
   name: Zwave-enheter
   entities:
     - zwave.aeotec_zw090_zstick_gen5_eu
-    - zwave.bad_relay
-    - zwave.bad_sensor
+    - zwave.bathroom_relay
+    - zwave.bathroom_multisensor
     - zwave.kitchen_dimmer
     
 media_players:
@@ -150,3 +152,45 @@ media_players:
     - media_player.bad
     - media_player.stue
 
+volkswagendashboard:
+    name: Volkswagen
+    view: yes
+    icon: mdi:car
+    entities:
+        - group.volkswagenswitches
+        - group.volkswagensensors
+        - group.volkswagenlocation
+
+volkswagenswitches:
+    name: Volkswagen Switches
+    control: hidden
+    entities:
+        - switch.vw_wvwzzzauzhw902303_charging
+        - switch.vw_wvwzzzauzhw902303_climatisation
+        - switch.vw_wvwzzzauzhw902303_window_heater
+        - lock.vw_wvwzzzauzhw902303_doors_locked
+        - lock.vw_wvwzzzauzhw902303_trunk_locked
+  
+volkswagensensors:
+    name: Volkswagen Information
+    control: hidden
+    entities:
+        - sensor.vw_wvwzzzauzhw902303_battery_level
+        - sensor.vw_wvwzzzauzhw902303_fuel_level
+        - sensor.vw_wvwzzzauzhw902303_charging_time_left
+        - sensor.vw_wvwzzzauzhw902303_odometer
+        - sensor.vw_wvwzzzauzhw902303_electric_range
+        - sensor.vw_wvwzzzauzhw902303_combustion_range
+        - sensor.vw_wvwzzzauzhw902303_combined_range
+        - sensor.vw_wvwzzzauzhw902303_last_connected
+        - sensor.vw_wvwzzzauzhw902303_service_inspection
+        - sensor.vw_wvwzzzauzhw902303_climatisation_target_temperature
+        - binary_sensor.vw_wvwzzzauzhw902303_parking_light
+        - binary_sensor.vw_wvwzzzauzhw902303_external_power
+        - binary_sensor.vw_wvwzzzauzhw902303_climatisation_without_external_power
+        
+volkswagenlocation:
+    name: Volkswagen Location
+    control: hidden
+    entities:
+        - device_tracker.vw_wvwzzzauzhw902303

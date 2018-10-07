@@ -80,3 +80,6 @@ dlib_unknown_faces
 ._configuration.yaml
 homebridge
 ._README.md
+.storage*
+.HA_VERSION
+._*

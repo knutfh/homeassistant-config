@@ -1,0 +1,18 @@
+- platform: waze_travel_time
+  origin: !secret home_address
+  destination: 'Østre Aker vei 19, 0581 Oslo'
+  name: 'Til Swisslog'
+  region: 'EU'
+  
+- platform: waze_travel_time
+  origin: !secret home_address
+  destination: !secret lvgs_address
+  name: 'Til Lørenskog VGS'
+  region: 'EU'
+  
+- platform: waze_travel_time
+  origin: !secret home_address
+  destination: 'Edvard Munchs veg, 2061 Gardermoen'
+  name: 'Til Gardermoen'
+  region: 'EU'
+  

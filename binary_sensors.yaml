@@ -3,4 +3,41 @@
     bathroom_movement:
       device_class: motion
       friendly_name: Bevegelse bad
-      value_template: "{{ is_state('sensor.bathroom_motion', '8') }}"
+      value_template: "{{ is_state('sensor.bathroom_multisensor_motion', '8') }}"
+      
+- platform: bayesian
+  prior: 0.5
+  name: 'Knut Presence'
+  probability_threshold: 0.8
+  observations:
+    - entity_id: 'device_tracker.knut_iphone_app'
+      prob_given_true: 0.9
+      prob_given_false: 0.2
+      platform: 'state'
+      to_state: 'home'
+    - entity_id: 'device_tracker.knut_iphone_wifi'
+      prob_given_true: 0.8
+      prob_given_false: 0.8
+      platform: 'state'
+      to_state: 'home'
+    - entity_id: 'device_tracker.owntracks_knut_iphone'
+      prob_given_true: 0.9
+      prob_given_false: 0.1
+      platform: 'state'
+      to_state: 'home'
+      
+- platform: bayesian
+  prior: 0.5
+  name: 'Simon Presence'
+  probability_threshold: 0.8
+  observations:
+    - entity_id: 'device_tracker.simon_iphone'
+      prob_given_true: 0.9
+      prob_given_false: 0.2
+      platform: 'state'
+      to_state: 'home'
+    - entity_id: 'device_tracker.owntracks_simon_iphone'
+      prob_given_true: 0.9
+      prob_given_false: 0.1
+      platform: 'state'
+      to_state: 'home'

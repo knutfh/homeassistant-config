@@ -1,0 +1,8 @@
+zigbee_permit_join:
+  name: Allow devices to join
+  initial: off
+  icon: mdi:cellphone-wireless
+  
+bed_light_toggle_memory:
+  name: Bed light toggle memory
+  initial: off

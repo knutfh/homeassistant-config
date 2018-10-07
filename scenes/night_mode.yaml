@@ -7,24 +7,5 @@
       state: off
     light.dimmer_kjokken_level:
       state: off
-    light.horus:
+    light.stuelys:
       state: off
-    light.trapp:
-      state: off
-    light.hund_1:
-      state: off
-    light.hund_2:
-      state: on
-      brightness_pct: 10
-    light.hund_3:
-      state: off
-    light.hund_4:
-      state: off
-    light.horus_3:
-      state: off
-    light.valperom_1:
-      state: off
-    light.valperom_2:
-      state: off
-    light.valperom_3:
-      state: on

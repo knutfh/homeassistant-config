@@ -2,10 +2,10 @@
   entities:
     light.inngang:
       state: on
-      brightness_pct: 5
+      brightness_pct: 15
     light.taklys_gang:
       state: on
-      brightness_pct: 5
+      brightness_pct: 40
     light.dimmer_kjokken_level:
       state: off
     light.horus:
@@ -16,11 +16,25 @@
       state: off
     light.hund_2:
       state: on
-      brightness_pct: 10
+      brightness_pct: 60
     light.hund_3:
       state: off
     light.hund_4:
       state: off
+    light.horus_1:
+      state: on
+      brightness_pct: 80
     light.horus_3:
       state: on
-      brightness_pct: 10
+      brightness_pct: 80
+    light.horus_7:
+      state: on
+      brightness_pct: 80
+    light.trapp_2:
+      state: on
+      brightness_pct: 80
+    light.spisebord:
+      state: on
+      brightness_pct: 80
+    light.lys_kjeller:
+      state: on

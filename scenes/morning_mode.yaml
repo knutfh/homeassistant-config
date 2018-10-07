@@ -2,12 +2,12 @@
   entities:
     light.inngang:
       state: on
-      brightness_pct: 15
+      brightness_pct: 75
     light.taklys_gang:
       state: on
-      brightness_pct: 15
+      brightness_pct: 75
     light.dimmer_kjokken_level:
       state: off
-    group.stue:
+    light.horus:
       state: on
-      brightness_pct: 15
+      brightness_pct: 50

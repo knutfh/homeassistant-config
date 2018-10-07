@@ -2,5 +2,5 @@
 - name: Swisslog
   latitude: !secret swisslog_lat
   longitude: !secret swisslog_lon
-  radius: 250
+  radius: 140
   icon: mdi:work

@@ -1,0 +1,42 @@
+- id: turn_off_basement_light_delay
+  alias: Turn off basement light delay
+  hide_entity: false
+  trigger:
+  - platform: state
+    entity_id:  binary_sensor.basement_occupancy_xiaomi
+    from: 'on'
+    to: 'off'
+  action:
+  - service: timer.start
+    data:
+      entity_id: timer.basement_light_turnoff
+      
+- id: turn_off_basement_light
+  alias: Turn off basement light
+  hide_entity: false
+  trigger:
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.basement_light_turnoff
+  action:
+  - service: light.turn_off
+    data:
+      entity_id: light.basement
+    
+- id: turn_on_basement_light
+  alias: Turn on basement light
+  hide_entity: false
+  trigger:
+  - platform: state
+    entity_id:  binary_sensor.basement_occupancy_xiaomi
+    from: 'off'
+    to: 'on'
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.basement
+  - service: timer.cancel
+    data:
+      entity_id: timer.basement_light_turnoff
+    

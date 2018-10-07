@@ -1,0 +1,15 @@
+- platform: mqtt
+  name: Bridge state
+  state_topic: "zigbee2mqtt/bridge/state"
+  icon: mdi:router-wireless
+  
+# - platform: "mqtt"
+#   state_topic: "zigbee2mqtt/0x00158d000223b244"
+#   availability_topic: "zigbee2mqtt/bridge/state"
+#   icon: "mdi:toggle-switch"
+#   value_template: "{{ value_json.click }}"
+#   json_attributes: 
+#     - "battery"
+#     - "voltage"
+#     - "action"
+#     - "duration"
