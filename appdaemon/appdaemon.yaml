@@ -5,11 +5,20 @@ log:
 appdaemon:
   threads: 10
   app_dir: /config/appdaemon/apps
+  api_key: appdaemon_key
   plugins:
     HASS:
       type: hass
+      namespace: hass
       ha_url: http://hassio/homeassistant
-      ha_key: 012d76c47930659720f8c0e39eecdfcfd31e9ba7c235d65d163dad921374a59e
+      token: 6d0ed167ba19d591e02d378267fab1946bcaf12b0de84d5a9b9ea2cec36b219b
+    MQTT:
+      type: mqtt
+      namespace: mqtt
+      client_host: core-mosquitto
+      client_id: appdaemon
+      client_user: hass
+      client_password: hass
 hadashboard:
   dash_url: http://127.0.0.1:5050
   dash_dir: /config/appdaemon/dashboards

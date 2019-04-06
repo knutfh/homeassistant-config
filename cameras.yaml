@@ -1,15 +1,23 @@
   - platform: generic
-    still_image_url: !secret entrance_camera_url
+    still_image_url: !secret entrance_camera_still_url
+    stream_source: !secret entrance_camera_stream_url
     name: Inngang
+
   - platform: generic
-    still_image_url: !secret dog_camera_url
+    still_image_url: !secret dog_camera_still_url
+    stream_source: !secret dog_camera_stream_url
     name: Hundehjørnet
+
   - platform: generic
-    still_image_url: !secret puppy_camera_url
+    still_image_url: !secret puppy_camera_still_url
+    stream_source: !secret puppy_camera_stream_url
     name: Valperom
+
   - platform: generic
-    still_image_url: !secret gate_camera_url
+    still_image_url: !secret gate_camera_still_url
+    stream_source: !secret gate_camera_stream_url
     name: Port
+
   - platform: generic
     still_image_url: !secret meteogram_url
     name: Meteogram

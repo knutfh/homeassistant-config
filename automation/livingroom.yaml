@@ -1,0 +1,112 @@
+- alias: Toggle stuelys on single click
+  trigger:
+    platform: mqtt
+    topic: 'zigbee2mqtt/button_stue'
+  condition:
+    condition: template
+    value_template: "{{ 'single' == trigger.payload_json.click }}"
+  action:
+  - service: light.toggle
+    entity_id: light.stue
+    
+- alias: Stuelys to 25% on double click
+  trigger:
+    platform: mqtt
+    topic: 'zigbee2mqtt/button_stue'
+  condition:
+    condition: template
+    value_template: "{{ 'double' == trigger.payload_json.click }}"
+  action:
+  - service: light.turn_on
+    data:
+      brightness: 64
+      entity_id: light.stue
+      
+- alias: Stuelys to 50% on triple click
+  trigger:
+    platform: mqtt
+    topic: 'zigbee2mqtt/button_stue'
+  condition:
+    condition: template
+    value_template: "{{ 'triple' == trigger.payload_json.click }}"
+  action:
+  - service: light.turn_on
+    data:
+      brightness: 128
+      entity_id: light.stue
+      
+- alias: Stuelys to 100% on quadruple click
+  trigger:
+    platform: mqtt
+    topic: 'zigbee2mqtt/button_stue'
+  condition:
+    condition: template
+    value_template: "{{ 'quadruple' == trigger.payload_json.click }}"
+  action:
+  - service: light.turn_on
+    data:
+      brightness: 255
+      entity_id: light.stue
+      
+- alias: Toggle living room light on single click at IKEA-button-1
+  trigger:
+    platform: mqtt
+    topic: 'zigbee2mqtt/IKEA-button-1'
+  condition:
+    condition: template
+    value_template: "{{ 'toggle' == trigger.payload_json.action }}"
+  action:
+  - service: light.toggle
+    data:
+      entity_id: light.stue
+      transition: 60
+      
+      
+
+- alias: Stuelys opp start dim
+  trigger:
+    platform: mqtt
+    topic: 'zigbee2mqtt/IKEA-button-1'
+  condition:
+    condition: template
+    value_template: "{{ 'brightness_up_hold' == trigger.payload_json.action }}"
+  action:
+  - service: script.turn_on
+    entity_id: script.stueopploop  
+    
+- alias: Stuelys dim opp stopp
+  trigger:
+    platform: mqtt
+    topic: 'zigbee2mqtt/IKEA-button-1'
+  condition:
+    condition: template
+    value_template: "{{ 'brightness_up_release' == trigger.payload_json.action }}"
+  action:
+  - service: script.turn_off
+    entity_id: script.stueopploop
+  - service: script.turn_off
+    entity_id: script.stueopploopdelay
+    
+- alias: Stuelys ned start dim
+  trigger:
+    platform: mqtt
+    topic: 'zigbee2mqtt/IKEA-button-1'
+  condition:
+    condition: template
+    value_template: "{{ 'brightness_down_hold' == trigger.payload_json.action }}"
+  action:
+  - service: script.turn_on
+    entity_id: script.stuenedloop  
+    
+- alias: Stuelys dim ned stopp
+  trigger:
+    platform: mqtt
+    topic: 'zigbee2mqtt/IKEA-button-1'
+  condition:
+    condition: template
+    value_template: "{{ 'brightness_down_release' == trigger.payload_json.action }}"
+  action:
+  - service: script.turn_off
+    entity_id: script.stuenedloop
+  - service: script.turn_off
+    entity_id: script.stuenedloopdelay

@@ -22,7 +22,7 @@
   action:
   - service: light.turn_off
     data:
-      entity_id: light.basement
+      entity_id: light.alt_lys_kjeller
     
 - id: turn_on_basement_light
   alias: Turn on basement light
@@ -35,7 +35,7 @@
   action:
   - service: light.turn_on
     data:
-      entity_id: light.basement
+      entity_id: light.alt_lys_kjeller
   - service: timer.cancel
     data:
       entity_id: timer.basement_light_turnoff

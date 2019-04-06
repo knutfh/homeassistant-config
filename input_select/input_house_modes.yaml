@@ -2,6 +2,7 @@ house_mode:
   name: Husmodus
   options:
     - Dag
+    - Kveld
     - Natt
     - Bortreist
     - Gjestemodus

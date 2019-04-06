@@ -5,123 +5,92 @@ resources:
     type: js
 
 views:
-  - icon: mdi:home-assistant
-    id: hoved
+### Home
+  - title: Home
     cards:
-      - type: glance
-        show_header_toggle: false
-        entities:
-          - entity: device_tracker.owntracks_knut_iphone
-            name: Knut
-          - device_tracker.simon_iphone
-          - entity: sensor.ute_kjellertrapp_temperature
-            name: Trapp
-          - entity: sensor.ute_inngang_temperature
-            name: Inngang
-      - type: entities
-        show_header_toggle: false
-        title: Bad
-        entities:
-          - sensor.bathroom_multisensor_temperature
-          - sensor.bathroom_multisensor_relative_humidity
-          - sensor.bathroom_multisensor_luminance
-          - binary_sensor.bathroom_movement
-          - switch.bathroom_ceiling_light
-          - switch.bathroom_fan
-      - type: entities
-        show_header_toggle: false
-        entities:
-          - scene.morgenmodus
-          - scene.nattmodus
-          - scene.kveldsmodus
-      - type: entities
-        title: Stue
-        show_header_toggle: false
-        entities:
-            - sensor.stue_temperature
-            - light.stuelys
-            - light.horus_
-            - light.trapp_
-            - light.hundehjrnet_
-            - light.spisebord
-            - light.valpehage
-      - type: entities
-        title: Kjøkken
-        show_header_toggle: false
-        entities:
-            - light.kitchen_dimmer_level
-      - type: entities
-        title: Soverom
-        show_header_toggle: false
-        entities:
-            - sensor.bedroom_temperature_xiaomi
-            - sensor.bedroom_humidity_xiaomi
-            - light.bedroom
-            - light.bed_light
       - type: entities
         title: Valperom
         show_header_toggle: false
         entities:
-            - sensor.valperom_temperature
-            - light.valperom_4
+          - scene.valpekasse
+          - sensor.valperom_temperature
+          - light.valperom
+
+      
+      - type: entities
+        title: Bad
+        show_header_toggle: false
+        entities:
+          - sensor.bathroom_multisensor_temperature
+          - sensor.bathroom_multisensor_relative_humidity
+          - switch.bathroom_ceiling_light
+          
+      - type: entities
+        title: Annet
+        show_header_toggle: false
+        entities:
+          - light.taklys_gang
+          - light.inngang
+
+
+### Stue
+      - type: entities
+        title: Stue
+        show_header_toggle: false
+        entities:
+          - sensor.stue_temperature
+          - light.stue
+          - light.trapp
+          - light.horus
+          - light.spisebord
+          - light.valpehage
+      - type: entities
+        title: Kjøkken
+        show_header_toggle: false
+        entities:
+          - light.taklys_kjokken
+          - light.kjokkenskap
+
+### Vær
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - sensor.ute_kjellertrapp_temperature
+              - sensor.ute_inngang_temperature
+          - type: picture-entity
+            entity: camera.meteogram
+            show_info: false
+          
+### Garasje          
       - type: entities
         title: Garasje
         show_header_toggle: false
         entities:
-            - light.garage_center
-            - light.garage_left
-            - light.garage_right
-            - light.garage_outside
-      - type: horizontal-stack
-        cards:
-          - type: picture-entity
-            entity: camera.hundehjrnet
-            show_info: false
-          - type: picture-entity
-            entity: camera.inngang
-            show_info: false
-          - type: picture-entity
-            entity: camera.port
-            show_info: false
-          - type: picture-entity
-            entity: camera.valperom
-            show_info: false
-  - icon: mdi:settings
-    title: Oversikt
+          - light.garage_outside
+          - light.garage_center
+
+#################
+# SYSTEM
+#################
+
+  - title: System
     cards:
       - type: entities
-        title: Zigbee
+        title: Zigbee2mqtt
+        show_header_toggle: false
         entities:
           - input_boolean.zigbee_permit_join
           - timer.zigbee_permit_join
           - sensor.bridge_state
-      - type: custom:monster-card
-        card:
-          type: entities
-          title: Xiaomi
-        filter:
-          include:
-            - entity_id: sensor.*xiaomi*
-            - entity_id: binary_sensor.*xiaomi*
-      - type: custom:monster-card
-        card:
-          type: entities
-          title: Alle lys og sensorer
-        filter:
-          include:
-            - domain: light
-            - entity_id: sensor.bath*
-            - entity_id: sensor.device*
-            - entity_id: sensor.*
-      - type: custom:monster-card
-        card:
-          type: entities
-          title: Alle automasjoner
-        filter:
-          include:
-            - domain: automation
+          
+          
+#################
+# Ute og bil
+#################
   - icon: mdi:car
     title: Bil
+    show_header_toggle: False
     cards:
       - type: custom:monster-card
         card:
@@ -134,23 +103,3 @@ views:
             - entity_id: sensor.wv*
             - entity_id: switch.wv*
             - entity_id: device_tracker.wv*
-  - icon: mdi:account-group
-    title: Presence
-    cards:
-      - type: entities
-        title: Knut
-        entities:
-          - binary_sensor.knut_presence
-          - device_tracker.owntracks_knut_iphone
-          - device_tracker.knut_iphone_app
-          - device_tracker.knut_iphone_wifi
-          - device_tracker.knut_nodered
-          - device_tracker.snom8m000047
-      - type: entities
-        title: Simon
-        entities:
-          - binary_sensor.simon_presence
-          - device_tracker.simon_iphone
-          - device_tracker.owntracks_simon_iphone
-          - device_tracker.pd171539
-          

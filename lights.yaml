@@ -1,109 +1,35 @@
-- platform: group
-  name: Stuelys
-  entities:
-    - light.horus_1
-    - light.horus_2
-    - light.horus_3
-    - light.horus_4
-    - light.horus_5
-    - light.horus_6
-    - light.horus_7
-    - light.horus_8
-    - light.horus_9
-    - light.horus_10
-    - light.trapp_1
-    - light.trapp_2
-    - light.trapp_3
-    - light.trapp_4
-    - light.trapp_5
-    - light.trapp_6
-    - light.trapp_7
-    - light.trapp_8
-    - light.hund_1
-    - light.hund_2
-    - light.hund_3
-    - light.hund_4
-    
-- platform: group
-  name: Horus_
-  entities:
-    - light.horus_1
-    - light.horus_2
-    - light.horus_3
-    - light.horus_4
-    - light.horus_5
-    - light.horus_6
-    - light.horus_7
-    - light.horus_8
-    - light.horus_9
-    - light.horus_10
-    
-- platform: group
-  name: Valpehage
-  entities:
-    - light.trapp_7
-    - light.trapp_8
-    - light.horus_5
-    - light.horus_6
-    
-
-- platform: group    
-  name: Trapp_
-  entities:
-    - light.trapp_1
-    - light.trapp_2
-    - light.trapp_3
-    - light.trapp_4
-    - light.trapp_5
-    - light.trapp_6
-    - light.trapp_7
-    - light.trapp_8
-    
-- platform: group
-  name: Hundehjørnet_
-  entities:
-    - light.hund_1
-    - light.hund_2
-    - light.hund_3
-    - light.hund_4
-    
-- platform: group
-  name: Spisebord
-  entities:
-    - light.horus_8
-    - light.horus_9
-    - light.horus_10
-    
-- platform: group
-  name: Nattlys
-  entities:
-    - light.inngang
-    - light.horus_3
-    - light.trapp_1
-    - light.hund_2
-    
-- platform: group
-  name: Bedroom
-  entities:
-    - light.soverom_1
-    - light.soverom_2
 
 - platform: group
-  name: Valperom
+  name: Alt lys kjeller
   entities:
-    - light.valperom_1
-    - light.valperom_2
-    - light.valperom_3
+    - light.kjeller_gulvlampe
+    - light.kjeller_lampett_1
+    - light.kjeller_lampett_2
+    - light.kjeller_lampett_3
 
+- platform: group
+  name: "Taklys soverom"
+  entities:
+    - light.soverom_tak_1
+    - light.soverom_tak_2
 
 - platform: rfxtrx
   #automatic_add: true
   devices:
     0710030e41020150:
-      name: Bed light
+      name: Nattbordslampe
       fire_event: true
     0710030e41030150:
-      name: Basement
+      name: Kjeller gulvlampe
+      fire_event: true
+    0b11006d01ce6f6e01010f70:
+      name: Kjeller lampett 1
+      fire_event: true
+    0b11007501ce6f6e02010f70:
+      name: Kjeller lampett 2
+      fire_event: true
+    0b11007601ce6f6e03010f70:
+      name: Kjeller lampett 3
       fire_event: true
 
 - platform: mqtt
@@ -153,3 +79,59 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   retain: false
+  
+- platform: mqtt
+  schema: json
+  name: "Stue"
+  command_topic: "zigbee2mqtt/lys_stue/set"
+  state_topic: "zigbee2mqtt/lys_stue/set"
+  color_temp: true
+  brightness: true
+  
+- platform: mqtt
+  schema: json
+  name: "Hund"
+  command_topic: "zigbee2mqtt/lys_hund/set"
+  state_topic: "zigbee2mqtt/lys_hund/set"
+  color_temp: true
+  brightness: true
+  
+- platform: mqtt
+  schema: json
+  name: "Trapp"
+  command_topic: "zigbee2mqtt/lys_trapp/set"
+  state_topic: "zigbee2mqtt/lys_trapp/set"
+  color_temp: true
+  brightness: true
+  
+- platform: mqtt
+  schema: json
+  name: "Horus"
+  command_topic: "zigbee2mqtt/lys_horus/set"
+  state_topic: "zigbee2mqtt/lys_horus/set"
+  color_temp: true
+  brightness: true
+  
+- platform: mqtt
+  schema: json
+  name: "Valpehage"
+  command_topic: "zigbee2mqtt/lys_valpehage/set"
+  state_topic: "zigbee2mqtt/lys_valpehage/set"
+  color_temp: true
+  brightness: true
+  
+- platform: mqtt
+  schema: json
+  name: "Spisebord"
+  command_topic: "zigbee2mqtt/lys_spisebord/set"
+  state_topic: "zigbee2mqtt/lys_spisebord/set"
+  color_temp: true
+  brightness: true
+  
+- platform: mqtt
+  schema: json
+  name: "Valperom"
+  command_topic: "zigbee2mqtt/lys_valperom/set"
+  state_topic: "zigbee2mqtt/lys_valperom/set"
+  color_temp: true
+  brightness: true

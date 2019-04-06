@@ -1,156 +1,17 @@
-# Views
-
-
-default_view:
-  view: yes
-  name: Hjem
-  entities:
-    - sensor.efergy_672729
-    - device_tracker.knut_bayesian
-    - device_tracker.simon_iphone
-    - sensor.valperom_temperature
-    - sensor.stue_temperature
-    - group.bad_view
-    - group.lights_bedroom
-    - group.lights_other
-    - group.lights_livingroom
-    - group.weather
-    - group.all_cameras
-    - camera.meteogram
-
-system_view:
-  view: yes
-  name: System
-  entities:
-    - group.all_automations
-    - group.all_devices
-    - group.all_lights
-    - group.all_remotes
-    - group.all_scripts
-    - group.people_status
-    - group.all_scenes
-    - group.batteries
-    - group.all_cameras
-    - group.zwave_units
-    - group.media_players
-    - group.scenes
-    - group.weather
-    - input_select.house_mode
-    
-lights_livingroom:
-  name: Stue
-  control: hidden
-  entities:
-    - light.stuelys
-    - light.horus_
-    - light.trapp_
-    - light.hundehjrnet_
-    - light.spisebord
-    - light.valpehage
-    
-lights_other:
-  name: Andre lys
-  control: hidden
-  entities:
-    - light.kitchen_dimmer_level
-    - light.valperom
-    - light.taklys_gang
-    
-lights_bedroom:
-  name: Soverom
-  control: hidden
-  entities:
-    - light.bedroom
-    - light.bed_light
-    - light.basement
-
-bad_view:
-  name: Bad
-  control: hidden
-  entities:
-    - sensor.bathroom_multisensor_temperature
-    - sensor.bathroom_multisensor_relative_humidity
-    - sensor.bathroom_multisensor_luminance
-    - binary_sensor.bathroom_movement
-    - switch.bathroom_relay_ceiling_light
-    - switch.bathroom_relay_fan
-
-weather:
-  name: Været
-  entities:
-    - sensor.ute_inngang_temperature
-    - sensor.ute_kjellertrapp_temperature
-    - sensor.vr_symbol
-    - sensor.vr_temperature
-    - sensor.vr_wind_speed
-    - sensor.vr_cloudiness
-    - sensor.vr_dewpoint_temperature
-    - sensor.vr_precipitation
-
-dimmer_kjokken:
-  name: Dimmer Kjøkken
-  entities:
-    - light.dimmer_kjokken_level
-    - sensor.dimmer_kjokken_power
-    - sensor.dimmer_kjokken
-    - sensor.dimmer_kjokken_energy
-
-batteries:
-  name: Batteristatus
-  entities:
-    - sensor.gang_fjernkontroll
-    - sensor.horus_fjernkontroll
-    - sensor.hundehjrnet_fjernkontroll
-    - sensor.soverom_fjernkontroll
-    - sensor.trapp_fjernkontroll
-    - sensor.inngang_dimmer
-    - sensor.valperom_dimmer
-    
-
-# people:
-#   name: Personer
-#   entities:
-#     - device_tracker.knut_iphone
-#     - device_tracker.simon_iphone
-    
-    
 people_status:
   name: Status personer
   entities:
     - sensor.knut_status
     - sensor.simon_status
-    
-scenes:
-  name: Scener
-  entities:
-    - scene.kveldsmodus
-    - scene.nattmodus
-    - scene.morgenmodus
-    - scene.evening_work
+
     
 all_cameras:
   name: Kameraer
   entities:
     - camera.hundehjornet
-    - camera.hundehjrnet
     - camera.inngang
     - camera.port
     - camera.valperom
-    
-zwave_units:
-  name: Zwave-enheter
-  entities:
-    - zwave.aeotec_zw090_zstick_gen5_eu
-    - zwave.bathroom_relay
-    - zwave.bathroom_multisensor
-    - zwave.kitchen_dimmer
-    
-media_players:
-  name: Mediespillere
-  entities:
-    - media_player.apple_tv_knut
-    - media_player.bad
-    - media_player.stue
 
 volkswagendashboard:
     name: Volkswagen
@@ -194,3 +55,11 @@ volkswagenlocation:
     control: hidden
     entities:
         - device_tracker.vw_wvwzzzauzhw902303
+        
+
+zigbee_group:
+  name: Zigbee
+  entities:
+    - input_boolean.zigbee_permit_join
+    - timer.zigbee_permit_join
+    - sensor.bridge_state

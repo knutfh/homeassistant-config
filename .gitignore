@@ -62,6 +62,7 @@ usps_cookies.pickle
 camera_recording.py
 home-assistant.env
 home-assistant.*
+node-red/*
 known_devices.yaml
 entity_registry.yaml
 secrets.yaml
@@ -83,3 +84,4 @@ homebridge
 .storage*
 .HA_VERSION
 ._*
+.vscode

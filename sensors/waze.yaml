@@ -1,12 +1,12 @@
 - platform: waze_travel_time
   origin: !secret home_address
-  destination: 'Østre Aker vei 19, 0581 Oslo'
+  destination: !secret knut_work_address
   name: 'Til Swisslog'
   region: 'EU'
   
 - platform: waze_travel_time
   origin: !secret home_address
-  destination: !secret lvgs_address
+  destination: !secret simon_work_address
   name: 'Til Lørenskog VGS'
   region: 'EU'
   

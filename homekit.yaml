@@ -1,20 +1,12 @@
-
   auto_start: False
   filter:
     include_entities:
-      - light.bed_light
+      - light.nattbordslampe
       - light.taklys_gang
-      - light.bedroom
-      - light.horus
-      - light.trapp
-      - light.hundehjrnet
-      - light.inngang
+      - light.taklys_soverom
       - light.stuelys
       - light.valperom
       - light.spisebord
-      - light.basement
-      - switch.bathroom_fan
+      - light.garage_center
+      - light.inngang
       - switch.bathroom_ceiling_light
-      - scene.kveldsmodus
-      - scene.nattmodus
-      - scene.morgenmodus
