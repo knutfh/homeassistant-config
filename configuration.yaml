@@ -25,6 +25,9 @@ webhook:
 
 logger:
     default: info
+    logs:
+      homeassistant.components.device_tracker: debug
+      traccar: debug
 
 http:
   use_x_forwarded_for: true
@@ -103,6 +106,12 @@ device_tracker:
     verify_ssl: false
     ssid_filter:
       - 'BazingaNet'
+
+  - platform: traccar
+    host: localhost
+    port: 8072
+    username: !secret traccar_username
+    password: !secret traccar_password
 
 
 ############################################
