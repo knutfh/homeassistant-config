@@ -1,21 +1,11 @@
-- alias: Toggle bedroom ceiling light on single click
-  trigger:
-    platform: mqtt
-    topic: 'zigbee2mqtt/button_soverom'
-  condition:
-    condition: template
-    value_template: "{{ 'single' == trigger.payload_json.click }}"
-  action:
-  - service: light.toggle
-    entity_id: light.taklys_soverom
-      
 - alias: Turn on bedroom nightstand light on double click
   trigger:
-    platform: mqtt
-    topic: 'zigbee2mqtt/button_soverom'
+  - platform: event
+    event_type: deconz_event
+    event_data:
+      id: 'smart_switch_soverom'
+      event: 1004
   condition:
-    - condition: template
-      value_template: "{{ 'double' == trigger.payload_json.click }}"
     - condition: state
       entity_id: input_boolean.bed_light_toggle_memory
       state: 'off'
@@ -27,11 +17,12 @@
     
 - alias: Turn off bedroom nightstand light on double click
   trigger:
-    platform: mqtt
-    topic: 'zigbee2mqtt/button_soverom'
+  - platform: event
+    event_type: deconz_event
+    event_data:
+      id: 'smart_switch_soverom'
+      event: 1004
   condition:
-    - condition: template
-      value_template: "{{ 'double' == trigger.payload_json.click }}"
     - condition: state
       entity_id: input_boolean.bed_light_toggle_memory
       state: 'on'
@@ -43,11 +34,12 @@
     
 - alias: Set house to night mode on triple click after 21
   trigger:
-    platform: mqtt
-    topic: 'zigbee2mqtt/button_soverom'
+  - platform: event
+    event_type: deconz_event
+    event_data:
+      id: 'smart_switch_soverom'
+      event: 1005
   condition:
-    - condition: template
-      value_template: "{{ 'triple' == trigger.payload_json.click }}"
     - condition: time
       after: '21:00:00'
   action:
@@ -58,13 +50,14 @@
       
 - alias: Activate night scene on triple click before 21
   trigger:
-    platform: mqtt
-    topic: 'zigbee2mqtt/button_soverom'
+  - platform: event
+    event_type: deconz_event
+    event_data:
+      id: 'smart_switch_soverom'
+      event: 1005
   condition:
-    - condition: template
-      value_template: "{{ 'triple' == trigger.payload_json.click }}"
     - condition: time
       before: '21:00:00'
   action:
-  - service: scene.turn_on
-    entity_id: scene.nattmodus
+  - service: script.turn_on
+    entity_id: script.nattmodus

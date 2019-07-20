@@ -1,0 +1,22 @@
+- name: Nattmodus off
+  entities:
+    light.stue:
+      state: false
+    light.taklys_gang:
+      state: false
+    light.taklys_kjokken:
+      state: false
+    light.taklys_soverom:
+      state: false
+
+- name: Nattmodus on
+  entities:
+    light.horus_3:
+      state: true
+      brightness: 50
+    light.taklys_inngang:
+      state: true
+      brightness: 50
+    light.trapp_1:
+      state: true
+      brightness: 50

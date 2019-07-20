@@ -2,14 +2,11 @@
 ### Nattmodus
 nattmodus:
   sequence:
-    - service: light.turn_off
-      data:
-        entity_id: light.stue, light.taklys_soverom, light.taklys_gang
-        transition: 10
-    - service: light.turn_on
-      data:
-        entity_id: light.hund_3, light.trapp_4, light.inn
-        brightness: 10
+    - service: scene.turn_on
+      entity_id: scene.nattmodus_off
+    - delay: 0:00:01
+    - service: scene.turn_on
+      entity_id: scene.nattmodus_on
         
 ### Morgenmodus
 morgenmodus:
@@ -26,56 +23,5 @@ kveldsmodus:
         entity_id: light.stue
         brightness_pct: 50
         transition: 10
-
-stueopploop:
-  alias: Stuelys opp 10% loop
-  sequence:
-    - service: light.turn_on
-      data_template:
-        entity_id: light.stue
-        transition: '1'
-        brightness: >
-          {% set n = states.light.stue.attributes.brightness + 25 %}
-          {% if n > 255 %}
-            255
-          {% else %}
-            {{ n }}
-          {% endif %}
-    - service: script.turn_on
-      entity_id: script.stueopploopdelay
-
-stueopploopdelay:
-  alias: Stuelys opp loop
-  sequence:
-    - delay:
-        milliseconds: 400
-    - service: script.turn_on
-      entity_id: script.stueopploop
- 
-stuenedloop:
-  alias: Stuelys ned 10% loop
-  sequence:
-    - service: light.turn_on
-      data_template:
-        entity_id: light.stue
-        transition: '1'
-        brightness: >
-         {% set n = states.light.stue.attributes.brightness - 50 %}
-         {% if n < 0 %}
-           0
-         {% else %}
-           {{ n }}
-         {% endif %}
-    - service: script.turn_on
-      entity_id: script.stuenedloopdelay
-
-stuenedloopdelay:
-  alias: Stuelys ned loop
-  sequence:
-    - delay:
-        milliseconds: 400
-    - service: script.turn_on
-      entity_id: script.stuenedloop
-      
       
       

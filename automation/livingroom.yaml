@@ -1,0 +1,17 @@
+- alias: Turn off livingroom light
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.fjernkontroll_stue_3
+    to: 'off'
+  action:
+  - service: light.turn_off
+    entity_id: light.stue
+
+- alias: Turn on livingroom light
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.fjernkontroll_stue_3
+    to: 'on'
+  action:
+  - service: light.turn_on
+    entity_id: light.stue
