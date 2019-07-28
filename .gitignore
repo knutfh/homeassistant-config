@@ -89,3 +89,5 @@ homebridge
 appdaemon/compiled
 home-assistant_v2.db-shm
 home-assistant_v2.db-wal
+.ssh/id_rsa
+.ssh/id_rsa.pub
