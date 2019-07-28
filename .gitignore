@@ -87,3 +87,5 @@ homebridge
 .vscode
 .Trash-0/info/b88a2504-7eb6-4bd7-8df0-ab5c3657e379.trashinfo
 appdaemon/compiled
+home-assistant_v2.db-shm
+home-assistant_v2.db-wal
