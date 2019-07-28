@@ -5,8 +5,5 @@
       - light.taklys_gang
       - light.taklys_soverom
       - light.stuelys
-      - light.valperom
-      - light.spisebord
       - light.garage_center
-      - light.inngang
       - switch.bathroom_ceiling_light
