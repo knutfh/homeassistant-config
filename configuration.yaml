@@ -114,3 +114,9 @@ volkswagencarnet:
   update_interval:
     minutes: 5
 
+
+############################################
+# Tibber
+############################################
+tibber:
+  access_token: !secret tibber_access_token
