@@ -111,8 +111,6 @@ notify:
 volkswagencarnet:
   username: !secret vw_username
   password: !secret vw_password
-  update_interval:
-    minutes: 5
 
 
 ############################################
