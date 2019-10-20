@@ -20,3 +20,6 @@
     light.trapp_1:
       state: true
       brightness: 50
+    light.kjokkenbenk:
+      state: true
+      brightness: 50
