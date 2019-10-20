@@ -18,7 +18,9 @@ updater:
 webhook:
 
 logger:
-  default: debug
+  default: critical
+  logs:
+    recorder: debug
 
 http:
   use_x_forwarded_for: true
@@ -26,11 +28,14 @@ http:
     - 127.0.0.1
     - ::1
 
+mobile_app:
+
+
 influxdb:
   host: a0d7b954-influxdb
   port: 8086
   database: homeassistant
-  username: hass
+  username: !secret influxdb_username
   password: !secret influxdb_password
   max_retries: 3
   default_measurement: state
@@ -74,35 +79,23 @@ tts:
 ############################################
 # Device Trackers
 ############################################
-device_tracker:
-  - platform: unifi
-    host: a0d7b954-unifi
-    port: 8443
-    username: !secret unifi_username
-    password: !secret unifi_password
-    verify_ssl: false
-    ssid_filter:
-      - 'BazingaNet'
+# device_tracker:
+  # - platform: unifi
+  #   host: a0d7b954-unifi
+  #   port: 8443
+  #   username: !secret unifi_username
+  #   password: !secret unifi_password
+  #   verify_ssl: false
+  #   ssid_filter:
+  #     - 'BazingaNet'
 
-  - platform: traccar
-    host: a0d7b954-traccar
-    port: 8072
-    ssl: false
-    verify_ssl: false
-    username: !secret traccar_username
-    password: !secret traccar_password
-
-
-############################################
-# Notifications
-############################################
-notify:
-  - platform: ios
-    name: knut
-    target: !secret knut_ios_push_key
-  - platform: ios
-    name: simon
-    target: !secret simon_ios_push_key
+  # - platform: traccar
+  #   host: a0d7b954-traccar
+  #   port: 8072
+  #   ssl: false
+  #   verify_ssl: false
+  #   username: !secret traccar_username
+  #   password: !secret traccar_password
 
 
 ############################################
