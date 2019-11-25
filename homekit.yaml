@@ -4,6 +4,10 @@
       - light.nattbordslampe
       - light.taklys_gang
       - light.taklys_soverom
+      - light.taklys_kjokken
+      - light.kjokkenbenk
       - light.stuelys
       - light.garage_center
       - switch.bathroom_ceiling_light
+      - sensor.ute_kjellertrapp_temperature
+      - sensor.stue_temperature
