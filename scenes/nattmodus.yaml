@@ -11,15 +11,15 @@
 
 - name: Nattmodus on
   entities:
-    light.horus_3:
+    light.horus_2:
       state: true
-      brightness: 50
+      brightness: 30
     light.taklys_inngang:
       state: true
-      brightness: 50
+      brightness: 30
     light.trapp_1:
       state: true
-      brightness: 50
+      brightness: 30
     light.kjokkenbenk:
       state: true
-      brightness: 50
+      brightness: 30
