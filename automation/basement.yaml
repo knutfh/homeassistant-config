@@ -3,7 +3,7 @@
   hide_entity: false
   trigger:
   - platform: state
-    entity_id:  binary_sensor.basement_occupancy_xiaomi
+    entity_id:  binary_sensor.bevegelse_kjeller
     from: 'on'
     to: 'off'
   action:
@@ -29,7 +29,7 @@
   hide_entity: false
   trigger:
   - platform: state
-    entity_id:  binary_sensor.basement_occupancy_xiaomi
+    entity_id:  binary_sensor.bevegelse_kjeller
     from: 'off'
     to: 'on'
   action:
@@ -39,4 +39,35 @@
   - service: timer.cancel
     data:
       entity_id: timer.basement_light_turnoff
-    
+
+- alias: Toggle basement light on single click
+  trigger:
+  - platform: event
+    event_type: deconz_event
+    event_data:
+      id: 'kjeller'
+      event: 1002
+  action:
+  - service: light.toggle
+    entity_id: light.alt_lys_kjeller
+  - service: automation.turn_off
+    entity_id: 
+      - automation.turn_on_basement_light
+      - automation.turn_off_basement_light
+      - automation.turn_off_basement_light_delay
+
+- alias: Activate basement light automation double click
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: 'kjeller'
+        event: 1004
+  action:
+    - service: automation.turn_on
+      entity_id:
+        - automation.turn_off_basement_light
+        - automation.turn_off_basement_light_delay
+        - automation.turn_on_basement_light
+    - service: automation.trigger
+      entity_id: automation.turn_off_basement_light
