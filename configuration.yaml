@@ -19,8 +19,6 @@ webhook:
 
 logger:
   default: critical
-  logs:
-    recorder: debug
 
 http:
   use_x_forwarded_for: true
@@ -79,23 +77,7 @@ tts:
 ############################################
 # Device Trackers
 ############################################
-# device_tracker:
-  # - platform: unifi
-  #   host: a0d7b954-unifi
-  #   port: 8443
-  #   username: !secret unifi_username
-  #   password: !secret unifi_password
-  #   verify_ssl: false
-  #   ssid_filter:
-  #     - 'BazingaNet'
-
-  # - platform: traccar
-  #   host: a0d7b954-traccar
-  #   port: 8072
-  #   ssl: false
-  #   verify_ssl: false
-  #   username: !secret traccar_username
-  #   password: !secret traccar_password
+device_tracker:
 
 
 ############################################
