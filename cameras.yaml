@@ -14,10 +14,12 @@
     name: Valperom
 
   - platform: generic
-    still_image_url: !secret gate_camera_still_url
-    stream_source: !secret gate_camera_stream_url
-    name: Port
-
-  - platform: generic
     still_image_url: !secret meteogram_url
     name: Meteogram
+
+  - platform: mjpeg
+    mjpeg_url: http://192.168.1.224:81/mjpg/Port
+    name: Port
+    username: !secret port_camera_username
+    password: !secret port_camera_password
+    authentication: basic
