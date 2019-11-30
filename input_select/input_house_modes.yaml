@@ -1,6 +1,7 @@
 house_mode:
   name: Husmodus
   options:
+    - Morgen
     - Dag
     - Kveld
     - Natt

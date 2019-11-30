@@ -49,7 +49,7 @@
 
 
 # Activate morning mode on weekdays
-- alias: "House to morning mode weekday"
+- alias: "House to morning mode weekdays"
   trigger:
     platform: time
     at: '05:15:00'
@@ -65,7 +65,7 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.house_mode
-        option: Dag
+        option: Morgen
     - service: notify.ios_knut_iphone
       data:
         message: "Morgenmodus aktivert"
