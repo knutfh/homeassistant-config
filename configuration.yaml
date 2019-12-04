@@ -57,6 +57,16 @@ timer: !include timers.yaml
 switch: !include_dir_merge_list switches
 zone: !include_dir_merge_list zone
 
+browser_mod:
+  prefix: "browser_"
+  devices:
+    4efee875-9fa0dc82:
+      name: knut_iphone_app
+    b6905551-b155375f:
+      name: knut_laptop_chrome
+    8345a03b-dab7ee22:
+      name: tablet
+
 
 ############################################
 # RFXtrx configuration
