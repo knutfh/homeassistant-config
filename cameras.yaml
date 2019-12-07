@@ -1,24 +1,24 @@
-  - platform: generic
-    still_image_url: !secret entrance_camera_still_url
-    stream_source: !secret entrance_camera_stream_url
+  - platform: mjpeg
+    mjpeg_url: http://10.0.10.9:81/mjpg/Inngang
     name: Inngang
+    username: !secret port_camera_username
+    password: !secret port_camera_password
+    authentication: basic
 
-  - platform: generic
-    still_image_url: !secret dog_camera_still_url
-    stream_source: !secret dog_camera_stream_url
-    name: Hundehjørnet
-
-  - platform: generic
-    still_image_url: !secret puppy_camera_still_url
-    stream_source: !secret puppy_camera_stream_url
+  - platform: mjpeg
+    mjpeg_url: http://10.0.10.9:81/mjpg/Valperom
     name: Valperom
+    username: !secret port_camera_username
+    password: !secret port_camera_password
+    authentication: basic
+
 
   - platform: generic
     still_image_url: !secret meteogram_url
     name: Meteogram
 
   - platform: mjpeg
-    mjpeg_url: http://192.168.1.224:81/mjpg/Port
+    mjpeg_url: http://10.0.10.9:81/mjpg/Port
     name: Port
     username: !secret port_camera_username
     password: !secret port_camera_password
