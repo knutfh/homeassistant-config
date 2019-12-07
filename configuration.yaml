@@ -19,6 +19,9 @@ webhook:
 
 logger:
   default: critical
+  logs:
+    homeassistant.components.rest_command: warning
+    homeassistant.components.rest: debug
 
 http:
   use_x_forwarded_for: true
