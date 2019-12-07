@@ -29,12 +29,6 @@
       value_template: "{{ state_attr('sensor.electricity_price_nv15', 'min_price') }}"
       icon_template: mdi:currency-usd
 
-    tibber_min_price:
-      friendly_name: "Minimumspris"
-      unit_of_measurement: "NOK/kWh"
-      value_template: "{{ state_attr('sensor.electricity_price_nv15', 'min_price') }}"
-      icon_template: mdi:currency-usd
-
     tibber_off_peak_1_price:
       friendly_name: "Off peak 1"
       unit_of_measurement: "NOK/kWh"
