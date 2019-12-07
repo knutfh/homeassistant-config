@@ -3,6 +3,8 @@ homeassistant:
   customize_glob: !include customize_glob.yaml
   auth_providers:
    - type: homeassistant
+   
+  packages: !include_dir_named packages
 
 cloud:
 config:

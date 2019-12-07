@@ -1,0 +1,57 @@
+########################################
+### TABLET PACKAGE
+########################################
+
+### Control
+rest_command:
+  set_brightness:
+    url: http://10.0.11.2:2323/?cmd=setStringSetting&key=screenBrightness&value={{ states('input_number.tablet_brightness')|int }}&password={{ input_text.tablet_rest_password }}
+
+input_number:
+  tablet_brightness:
+    name: Tablet brightness
+    initial: 50
+    min: 0
+    max: 255
+    step: 5
+
+input_text:
+  tablet_rest_password: !secret tablet_rest_password
+
+
+### Automations
+automation:
+  - id: tablet_brightness_manual
+    alias: Set tablet brightness when input number changes
+    hide_entity: false
+    trigger:
+    - platform: state
+      entity_id:  input_number.tablet_brightness
+    action:
+      service: rest_command.set_brightness
+
+
+### Sensors
+sensor:
+  - platform: rest
+    name: tablet_rest
+    json_attributes:
+      - batteryLevel
+      - kioskMode
+      - screenBrightness
+      - motionDetectorState
+      - maintenanceMode
+      - appFreeMemory
+      - appUsedMemory
+      - totalFreeMemory
+      - totalUsedMemory
+      - hostname4
+      - ip4
+      - mac
+      - locationLatitude
+      - locationLongitude
+      - locationAltitude
+      - startUrl
+      - currentPage
+    resource: !secret tablet_rest_url
+    value_template: '{{ value_json.isScreenOn }}'
