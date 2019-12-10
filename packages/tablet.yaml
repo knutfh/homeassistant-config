@@ -16,7 +16,10 @@ input_number:
     step: 5
 
 input_text:
-  tablet_rest_password: !secret tablet_rest_password
+  tablet_rest_password: 
+    name: Tablet rest password
+    initial: !secret tablet_rest_password
+    mode: password
 
 
 ### Automations
