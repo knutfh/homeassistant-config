@@ -1,0 +1,82 @@
+########################################
+#  HOUSE MODE
+########################################
+
+input_select:
+  house_mode:
+    name: Husmodus
+    options:
+      - Morgen
+      - Dag
+      - Kveld
+      - Natt
+      - Bortreist
+      - Gjestemodus
+    initial: Dag
+    icon: mdi:home
+
+binary_sensor:
+  - platform: workday
+    name: Workday today
+    country: 'NO'
+  - platform: workday
+    name: Workday tomorrow
+    country: 'NO'
+    days_offset: 1
+
+
+automation:
+  
+  # Morning mode at 05:15 on weekdays, else 08:00
+  - alias: House mode to morning
+    trigger:
+      platform: template
+      value_template: '{% if is_state("binary_sensor.workday_today", "on") and is_state("sensor.time", "05:15") or is_state("binary_sensor.workday_today", "off") and is_state("sensor.time", "08:00")-%}true{%- endif %}' 
+    action:
+      service: input_select.select_option
+      data:
+        entity_id: input_select.house_mode
+        option: Morgen
+  
+  - alias: House mode to day
+    trigger:
+      platform: time
+      at: '10:00'
+    action:
+      service: input_select.select_option
+      data:
+        entity_id: input_select.house_mode
+        option: Dag
+
+  - alias: House mode to evening
+    trigger:
+      platform: template
+      value_template: '{% if is_state("binary_sensor.workday_tomorrow", "on") and is_state("sensor.time", "21:00") or is_state("binary_sensor.workday_tomorrow", "off") and is_state("sensor.time", "23:45")-%}true{%- endif %}' 
+    action:
+      service: input_select.select_option
+      data:
+        entity_id: input_select.house_mode
+        option: Kveld
+
+  - alias: House mode to night
+    trigger:
+      platform: time
+      at: '02:00'
+    condition:
+      condition: state
+      entity_id: input_select.house_mode
+      state: "{{ not is_state(input_select.house_mode, 'Natt') }}"
+    action:
+      service: input_select.select_option
+      data:
+        entity_id: input_select.house_mode
+        option: Kveld
+
+  - alias: Notify changed housemode
+    trigger:
+      platform: state
+      entity_id: input_select.house_mode
+    action:
+      service: notify.mobile_app_siphone
+      data:
+        message: "House set to {{ states('input_select.house_mode') }}"
