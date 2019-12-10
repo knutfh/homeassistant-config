@@ -92,3 +92,6 @@ home-assistant_v2.db-wal
 .ssh/id_rsa
 .ssh/id_rsa.pub
 .Trash-0/*
+themes/*
+custom_components/browser_mod/*
+custom_components/hacs/*
