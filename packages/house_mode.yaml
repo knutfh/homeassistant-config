@@ -23,10 +23,43 @@ binary_sensor:
     name: Workday tomorrow
     country: 'NO'
     days_offset: 1
+  - platform: template
+    sensors:
+      house_not_night_mode:
+        friendly_name: House is not in night mode
+        value_template: "{{ not is_state('input_select.house_mode', 'Natt')}}"
 
+script:
+  ### Nattmodus
+  nattmodus:
+    sequence:
+      - service: scene.turn_on
+        entity_id: scene.nattmodus_off
+      - delay: 0:00:01
+      - service: scene.turn_on
+        entity_id: scene.nattmodus_on
+          
+  ### Morgenmodus
+  morgenmodus:
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.taklys_gang, light.horus_2, light.trapp_1, light.taklys_kjokken
+          brightness: 20
+      - service: light.turn_on
+        data:
+          entity_id: light.kjokkenbenk, light.taklys_inngang
+          brightness: 200
+      
+  kveldsmodus:
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.stue
+          brightness_pct: 50
+          transition: 10
 
 automation:
-  
   # Morning mode at 05:15 on weekdays, else 08:00
   - alias: House mode to morning
     trigger:
