@@ -1,14 +1,5 @@
 - platform: template
   sensors:
-    knut_status:
-      value_template: '{{ states.input_select.knut_status_dropdown.state }}'
-      friendly_name: 'Knut'
-      entity_id: input_select.knut_status_dropdown
-    simon_status:
-      value_template: '{{ states.input_select.simon_status_dropdown.state }}'
-      friendly_name: 'Simon'
-      entity_id: input_select.simon_status_dropdown
-    
 
   # Tibbersensorer strømpris NV15
     tibber_max_price:

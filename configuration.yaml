@@ -1,6 +1,5 @@
 homeassistant:
   customize: !include customize.yaml  
-  customize_glob: !include customize_glob.yaml
   auth_providers:
    - type: homeassistant
   packages: !include_dir_named packages
@@ -56,7 +55,6 @@ camera: !include cameras.yaml
 group: !include groups.yaml
 homekit: !include homekit.yaml
 input_boolean: !include_dir_merge_named input_boolean
-input_select: !include_dir_merge_named input_select
 light: !include lights.yaml
 scene: !include_dir_merge_list scenes
 sensor: !include_dir_merge_list sensors
