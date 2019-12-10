@@ -3,27 +3,30 @@ homeassistant:
   customize_glob: !include customize_glob.yaml
   auth_providers:
    - type: homeassistant
-   
   packages: !include_dir_named packages
 
-cloud:
 config:
 conversation:
+
 discovery:
+  ignore:
+    - igd
+
 frontend:
 history:
 logbook:
 map:
 sun:
 system_health:
+
 updater:
 webhook:
 
+recorder:
+  db_url: !secret mariadb_conn
+
 logger:
-  default: critical
-  logs:
-    homeassistant.components.rest_command: warning
-    homeassistant.components.rest: debug
+  default: warning
 
 http:
   use_x_forwarded_for: true
@@ -32,7 +35,7 @@ http:
     - ::1
 
 mobile_app:
-
+ios:
 
 influxdb:
   host: a0d7b954-influxdb
@@ -98,9 +101,9 @@ device_tracker:
 ############################################
 # Volkswagen Car-net
 ############################################
-volkswagencarnet:
-  username: !secret vw_username
-  password: !secret vw_password
+#volkswagencarnet:
+#  username: !secret vw_username
+#  password: !secret vw_password
 
 
 ############################################
