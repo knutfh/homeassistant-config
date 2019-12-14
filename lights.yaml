@@ -132,15 +132,3 @@
   payload_available: "Online"
   payload_not_available: "Offline"
   retain: false
-  
-- platform: mqtt
-  name: "Garage outside"
-  state_topic: "stat/garage/POWER4"
-  command_topic: "cmnd/garage/POWER4"
-  availability_topic: "tele/garage/LWT"
-  qos: 1
-  payload_on: "ON"
-  payload_off: "OFF"
-  payload_available: "Online"
-  payload_not_available: "Offline"
-  retain: false
