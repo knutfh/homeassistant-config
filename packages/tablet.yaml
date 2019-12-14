@@ -33,6 +33,19 @@ automation:
     action:
       service: rest_command.set_brightness
 
+  - id: tablet_reduce_brightness_at_night
+    alias: Reduce tablet brightness at night
+    trigger:
+    - platform: state
+      entity_id: input_select.house_mode
+      to: Kveld
+    action: 
+      service: input_number.set_value
+      data_template: 
+        entity_id: input_number.tablet_brightness
+        value: 5
+
+
 
 ### Sensors
 sensor:
