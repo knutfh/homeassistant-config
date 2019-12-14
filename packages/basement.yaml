@@ -1,0 +1,99 @@
+########################################
+#  BASEMENT
+########################################
+
+light:
+  - platform: rfxtrx
+    devices:
+      0710030e41030150:
+        name: Kjeller gulvlampe
+        fire_event: true
+      0b11006d01ce6f6e01010f70:
+        name: Kjeller lampett 1
+        fire_event: true
+      0b11007501ce6f6e02010f70:
+        name: Kjeller lampett 2
+        fire_event: true
+      0b11007601ce6f6e03010f70:
+        name: Kjeller lampett 3
+        fire_event: true
+
+timer:
+  basement_light_turnoff:
+    name: Time remaining
+    duration: 600
+
+automation:
+  - id: turn_off_basement_light_delay
+    alias: Turn off basement light delay
+    hide_entity: false
+    trigger:
+    - platform: state
+      entity_id:  binary_sensor.bevegelse_kjellerstue
+      from: 'on'
+      to: 'off'
+    action:
+    - service: timer.start
+      data:
+        entity_id: timer.basement_light_turnoff
+      
+  - id: turn_off_basement_light
+    alias: Turn off basement light
+    hide_entity: false
+    trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.basement_light_turnoff
+    action:
+    - service: light.turn_off
+      data:
+        entity_id: light.alt_lys_kjeller
+      
+  - id: turn_on_basement_light
+    alias: Turn on basement light
+    hide_entity: false
+    trigger:
+    - platform: state
+      entity_id:  binary_sensor.bevegelse_kjellerstue
+      from: 'off'
+      to: 'on'
+    action:
+    - service: light.turn_on
+      data:
+        entity_id: light.alt_lys_kjeller
+    - service: timer.cancel
+      data:
+        entity_id: timer.basement_light_turnoff
+
+  - alias: Toggle basement light on single click
+    trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: 'kjeller'
+        event: 1002
+    action:
+    - service: light.toggle
+      entity_id: light.alt_lys_kjeller
+    - service: automation.turn_off
+      entity_id: 
+        - automation.turn_on_basement_light
+        - automation.turn_off_basement_light
+        - automation.turn_off_basement_light_delay
+
+  - alias: Activate basement light automation double click
+    trigger:
+      - platform: event
+        event_type: deconz_event
+        event_data:
+          id: 'kjeller'
+          event: 1004
+    action:
+      - service: automation.turn_on
+        entity_id:
+          - automation.turn_off_basement_light
+          - automation.turn_off_basement_light_delay
+          - automation.turn_on_basement_light
+      - service: automation.trigger
+        entity_id: automation.turn_off_basement_light
