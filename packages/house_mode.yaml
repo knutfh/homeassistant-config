@@ -85,6 +85,10 @@ automation:
     trigger:
       platform: template
       value_template: '{% if is_state("binary_sensor.workday_tomorrow", "on") and is_state("sensor.time", "21:00") or is_state("binary_sensor.workday_tomorrow", "off") and is_state("sensor.time", "23:45")-%}true{%- endif %}' 
+    condition:
+        - condition: state
+          entity_id: input_select.house_mode
+          state: Dag
     action:
       service: input_select.select_option
       data:
