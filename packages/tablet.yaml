@@ -71,3 +71,10 @@ sensor:
       - currentPage
     resource: !secret tablet_rest_url
     value_template: '{{ value_json.isScreenOn }}'
+
+switch:
+  - platform: rfxtrx
+    devices:
+      0b11000512bc0cfe08010f70:
+        name: TabletPowerSwitch
+        fire_event: true
