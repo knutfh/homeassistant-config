@@ -21,11 +21,16 @@ system_health:
 updater:
 webhook:
 
+lovelace:
+  mode: yaml
+
 recorder:
   db_url: !secret mariadb_conn
 
 logger:
   default: warning
+  logs:
+    homeassistant.components.rfxtrx: debug
 
 http:
   use_x_forwarded_for: true

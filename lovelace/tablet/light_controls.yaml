@@ -1,0 +1,41 @@
+type: horizontal-stack
+cards:
+  - type: custom:button-card
+    entity: light.stue
+    color: auto
+    color_type: card
+    tap_action:
+      action: more-info
+    double_tap_action:
+      action: toggle
+    size: 30%
+
+  - type: custom:button-card
+    entity: light.taklys_inngang
+    color: auto
+    color_type: card
+    tap_action:
+      action: more-info
+    double_tap_action:
+      action: toggle
+    size: 30%
+
+  - type: custom:button-card
+    entity: light.taklys_gang
+    color: auto
+    color_type: card
+    tap_action:
+      action: more-info
+    double_tap_action:
+      action: toggle
+    size: 30%
+
+  - type: custom:button-card
+    entity: light.taklys_kjokken
+    color: auto
+    color_type: card
+    tap_action:
+      action: more-info
+    double_tap_action:
+      action: toggle
+    size: 30%

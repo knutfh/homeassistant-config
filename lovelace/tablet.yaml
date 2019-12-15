@@ -1,0 +1,13 @@
+title: Tablet
+path: tablet
+panel: false
+cards:
+  - type: vertical-stack
+    cards:
+      - !include tablet/day_mode.yaml
+      - !include tablet/light_controls.yaml
+      - !include tablet/temperature_cards.yaml
+      - !include tablet/media_player.yaml
+      - !include tablet/garden_lights.yaml
+      - !include tablet/camera_gate.yaml
+      - !include tablet/travel_sensor_to_work.yaml

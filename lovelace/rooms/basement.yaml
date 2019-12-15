@@ -1,0 +1,8 @@
+- type: entities
+  title: Kjeller
+  show_header_toggle: false
+  entities:
+    - entity: light.alt_lys_kjeller
+    - entity: binary_sensor.bevegelse_kjellerstue
+    - entity: automation.activate_basement_light_automation_double_click
+    - entity: timer.basement_light_turnoff

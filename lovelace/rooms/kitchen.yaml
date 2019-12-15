@@ -1,0 +1,6 @@
+- type: entities
+  title: Kjøkken
+  show_header_toggle: false
+  entities:
+    - entity: light.taklys_kjokken
+    - entity: light.kjokkenbenk

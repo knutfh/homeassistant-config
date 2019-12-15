@@ -1,0 +1,19 @@
+type: horizontal-stack
+cards:
+  - type: custom:button-card
+    entity: input_select.house_mode
+    label: |
+      [[[
+        return states['input_select.house_mode'].state;
+      ]]]
+    layout: vertical
+    show_icon: false
+    show_label: true
+    show_name: false
+    styles:
+      card:
+        - height: 40 px
+      label:
+        - font-weight: bold
+    tap_action:
+      action: more-info

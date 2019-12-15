@@ -1,0 +1,8 @@
+- type: entities
+  title: Valperom
+  show_header_toggle: false
+  entities:
+    - entity: sensor.valperom_temperature
+    - entity: scene.valpekasse
+    - entity: light.valperom
+    - entity: camera.valperom

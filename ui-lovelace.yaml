@@ -1,0 +1,32 @@
+cch:
+  exceptions:
+    - conditions:
+        user_agent: HUAWEI
+      config:
+        default_tab: tablet
+        kiosk_mode: true
+        menu: hide
+        notifications: show
+        options: hide
+        show_tabs: tablet
+        voice: hide
+  voice: hide
+resources:
+  - type: module
+    url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
+  - type: module
+    url: /community_plugin/mini-media-player/mini-media-player-bundle.js
+  - type: module
+    url: /community_plugin/button-card/button-card.js
+  - type: module
+    url: /community_plugin/compact-custom-header/compact-custom-header.js
+  - type: js
+    url: /community_plugin/zha-network-card/zha-network-card.js
+  - type: module
+    url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
+title: Villa Bazinga
+views:
+  - !include lovelace/tablet.yaml
+  - !include lovelace/rooms.yaml
+  - !include lovelace/energy_nv15.yaml
+  - !include lovelace/energy_nv17.yaml

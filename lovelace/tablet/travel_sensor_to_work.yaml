@@ -1,0 +1,28 @@
+type: conditional
+conditions:
+  - entity: input_select.house_mode
+    state: Morgen
+card:
+  type: horizontal-stack
+  cards:
+    - type: 'custom:mini-graph-card'
+      align_header: center
+      align_icon: state
+      align_state: center
+      entities:
+        - entity: sensor.til_swisslog
+          name: Swisslog
+      name: Reisetid Swisslog
+      show:
+        graph: false
+    - type: 'custom:mini-graph-card'
+      align_header: center
+      align_icon: state
+      align_state: center
+      entities:
+        - entity: sensor.til_lorenskog_vgs
+          name: Swisslog
+      name: Reisetid Lørenskog VGS
+      show:
+        graph: false
+
