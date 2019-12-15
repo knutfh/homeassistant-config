@@ -5,9 +5,8 @@ This is my [Home Assistant](https://www.home-assistant.io) configuration.
 I'm running Ubuntu 16.04.4 (Xenial) on an old laptop, and have installed [Hass.io](https://www.home-assistant.io/hassio/). 
 I'm running a slew of different services in the same Docker environment, and use [Portainer](https://portainer.io) to manage it all.
 
-- [NGINX](http://nginx.org) as a reverse proxy.
-- [ZoneMinder](https://zoneminder.com) for surveillance.
-- [Organizr](https://organizr.us) for a fancy UI to bundle all webservices.
+- [Caddy](https://caddyserver.com) as a reverse proxy.
+- [BlueIris](https://blueirissoftware.com) for surveillance.
 - [InfluxDB](https://www.influxdata.com) to store sensor data from Home Assistant.
 - [Grafana](https://grafana.com) to visualise all of that data.
 - [Portainer](https://www.portainer.io) to manage my Docker environment.
