@@ -23,6 +23,15 @@ timer:
     name: Time remaining
     duration: 600
 
+sensor:
+  - platform: rfxtrx
+    devices:
+      0a520950190000a3320179:
+        name: Vaskerom
+        data_type:
+          - Temperature
+          - Humidity
+
 automation:
   - id: turn_off_basement_light_delay
     alias: Turn off basement light delay
