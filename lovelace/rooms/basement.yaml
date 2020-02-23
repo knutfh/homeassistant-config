@@ -6,3 +6,8 @@
     - entity: binary_sensor.bevegelse_kjellerstue
     - entity: automation.activate_basement_light_automation_double_click
     - entity: timer.basement_light_turnoff
+    - entity: sensor.vaskerom_temperature
+    - entity: sensor.t10_temperature
+    - entity: sensor.t10_humidity
+- type: thermostat
+  entity: climate.termostat_kontor_kjeller

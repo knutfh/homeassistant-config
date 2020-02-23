@@ -31,6 +31,11 @@ sensor:
         data_type:
           - Temperature
           - Humidity
+      0a5209114a0000952d0179:
+        name: T10
+        data_type:
+          - Temperature
+          - Humidity
 
 automation:
   - id: turn_off_basement_light_delay
@@ -106,3 +111,19 @@ automation:
           - automation.turn_on_basement_light
       - service: automation.trigger
         entity_id: automation.turn_off_basement_light
+
+
+switch:
+  - platform: rfxtrx
+    devices:
+      0b11000544bc0cfe08010f70:
+        name: HeaterOfficeBasement
+        fire_event: true
+
+
+# Example configuration.yaml entry
+climate:
+  - platform: generic_thermostat
+    name: Termostat kontor kjeller
+    heater: switch.heaterofficebasement
+    target_sensor: sensor.t10_temperature
