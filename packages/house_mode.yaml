@@ -44,7 +44,7 @@ script:
     sequence:
       - service: light.turn_on
         data:
-          entity_id: light.taklys_gang, light.horus_2, light.trapp_1, light.taklys_kjokken
+          entity_id: light.taklys_gang, light.horus_2, light.trapp_1
           brightness: 20
       - service: light.turn_on
         data:
