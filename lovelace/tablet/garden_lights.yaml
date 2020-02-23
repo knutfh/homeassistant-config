@@ -1,11 +1,11 @@
 type: conditional
 conditions:
-  - entity: 'input_boolean.show_outdoor_lights'
-    state: 'off'
+  - entity: "input_boolean.show_outdoor_lights"
+    state: 'on'
 card:
   type: horizontal-stack
   cards:
-    - type: custom:button-card
+    - type: "custom:button-card"
       entity: light.hagelys
       color: 'auto'
       color_type: 'card'
