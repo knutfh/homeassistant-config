@@ -28,9 +28,10 @@ recorder:
   db_url: !secret mariadb_conn
 
 logger:
-  default: warning
+  default: error
   logs:
     homeassistant.components.rfxtrx: debug
+    custom_components.volkswagencarnet: error
 
 http:
   use_x_forwarded_for: true
@@ -103,9 +104,9 @@ device_tracker:
 ############################################
 # Volkswagen Car-net
 ############################################
-#volkswagencarnet:
-#  username: !secret vw_username
-#  password: !secret vw_password
+volkswagencarnet:
+  username: !secret vw_username
+  password: !secret vw_password
 
 
 ############################################
