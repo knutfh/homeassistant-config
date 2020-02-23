@@ -97,3 +97,4 @@ custom_components/browser_mod/*
 custom_components/hacs/*
 appdaemon/appdaemon.yaml
 alpr.json
+.HA_VERSION
