@@ -1,16 +1,15 @@
-cch:
+custom_header:
+  compact_mode: true
   exceptions:
     - conditions:
-        user_agent: HUAWEI
+        user_agent: "HUAWEI"
+        user: Tablet
       config:
         default_tab: tablet
-        kiosk_mode: true
-        menu: hide
-        notifications: show
-        options: hide
-        show_tabs: tablet
-        voice: hide
-  voice: hide
+        voice_hide: true
+        options_hide: true
+        menu_hide: true
+        header_css: "background: #384048;"
 resources:
   - type: module
     url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
@@ -18,10 +17,8 @@ resources:
     url: /community_plugin/mini-media-player/mini-media-player-bundle.js
   - type: module
     url: /community_plugin/button-card/button-card.js
-  - type: module
-    url: /community_plugin/compact-custom-header/compact-custom-header.js
-  - type: js
-    url: /community_plugin/zha-network-card/zha-network-card.js
+  - url: /community_plugin/custom-header/custom-header.js
+    type: module
   - type: module
     url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
 title: Villa Bazinga
