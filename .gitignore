@@ -95,3 +95,5 @@ home-assistant_v2.db-wal
 themes/*
 custom_components/browser_mod/*
 custom_components/hacs/*
+appdaemon/appdaemon.yaml
+alpr.json
