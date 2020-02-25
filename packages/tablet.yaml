@@ -26,7 +26,6 @@ input_text:
 automation:
   - id: tablet_brightness_manual
     alias: Set tablet brightness when input number changes
-    hide_entity: false
     trigger:
     - platform: state
       entity_id:  input_number.tablet_brightness
