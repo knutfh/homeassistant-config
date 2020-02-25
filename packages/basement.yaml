@@ -40,7 +40,6 @@ sensor:
 automation:
   - id: turn_off_basement_light_delay
     alias: Turn off basement light delay
-    hide_entity: false
     trigger:
     - platform: state
       entity_id:  binary_sensor.bevegelse_kjellerstue
@@ -53,7 +52,6 @@ automation:
       
   - id: turn_off_basement_light
     alias: Turn off basement light
-    hide_entity: false
     trigger:
     - platform: event
       event_type: timer.finished
@@ -66,7 +64,6 @@ automation:
       
   - id: turn_on_basement_light
     alias: Turn on basement light
-    hide_entity: false
     trigger:
     - platform: state
       entity_id:  binary_sensor.bevegelse_kjellerstue

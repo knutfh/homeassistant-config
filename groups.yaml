@@ -1,6 +1,5 @@
 volkswagendashboard:
     name: Volkswagen
-    view: yes
     icon: mdi:car
     entities:
         - group.volkswagenswitches
@@ -9,7 +8,6 @@ volkswagendashboard:
 
 volkswagenswitches:
     name: Volkswagen Switches
-    control: hidden
     entities:
         - switch.vw_wvwzzzauzhw902303_charging
         - switch.vw_wvwzzzauzhw902303_climatisation
@@ -19,7 +17,6 @@ volkswagenswitches:
   
 volkswagensensors:
     name: Volkswagen Information
-    control: hidden
     entities:
         - sensor.vw_wvwzzzauzhw902303_battery_level
         - sensor.vw_wvwzzzauzhw902303_fuel_level
@@ -37,6 +34,5 @@ volkswagensensors:
         
 volkswagenlocation:
     name: Volkswagen Location
-    control: hidden
     entities:
         - device_tracker.vw_wvwzzzauzhw902303
