@@ -2,10 +2,4 @@ type: custom:mini-media-player
 entity: media_player.stue
 hide:
   volume: true
-shortcuts:
-  buttons:
-    - icon: 'mdi:dog'
-      id: script.sonos_dog_playlist
-      type: script
-  columns: 2
 source: icon
