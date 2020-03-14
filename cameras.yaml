@@ -6,12 +6,11 @@
     authentication: basic
 
   - platform: mjpeg
-    mjpeg_url: http://10.0.10.9:81/mjpg/Valperom
+    mjpeg_url: http://10.0.10.9:81/mjpg/Valp
     name: Valperom
     username: !secret port_camera_username
     password: !secret port_camera_password
     authentication: basic
-
 
   - platform: generic
     still_image_url: !secret meteogram_url
@@ -20,6 +19,13 @@
   - platform: mjpeg
     mjpeg_url: http://10.0.10.9:81/mjpg/Port
     name: Port
+    username: !secret port_camera_username
+    password: !secret port_camera_password
+    authentication: basic
+
+  - platform: mjpeg
+    mjpeg_url: http://10.0.10.9:81/mjpg/NV17
+    name: NV17
     username: !secret port_camera_username
     password: !secret port_camera_password
     authentication: basic
