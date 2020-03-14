@@ -107,7 +107,7 @@ automation:
       service: input_select.select_option
       data:
         entity_id: input_select.house_mode
-        option: Kveld
+        option: Natt
 
   - alias: Notify changed housemode
     trigger:
@@ -117,3 +117,21 @@ automation:
       service: notify.mobile_app_siphone
       data:
         message: "House set to {{ states('input_select.house_mode') }}"
+
+  - alias: "Activate night scene"
+    trigger:
+      platform: state
+      entity_id: input_select.house_mode
+      to: 'Natt'
+    action:
+      - service: script.turn_on
+        entity_id: script.nattmodus
+
+  - alias: "Activate morning scene"
+    trigger:
+      platform: state
+      entity_id: input_select.house_mode
+      to: 'Morgen'
+    action:
+      - service: script.turn_on
+        entity_id: script.morgenmodus
