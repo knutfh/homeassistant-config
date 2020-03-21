@@ -1,5 +1,0 @@
-type: custom:mini-media-player
-entity: media_player.stue
-hide:
-  volume: true
-source: icon

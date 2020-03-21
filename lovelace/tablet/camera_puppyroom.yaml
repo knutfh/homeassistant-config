@@ -1,8 +1,0 @@
-type: horizontal-stack
-cards:
-  - type: picture-entity
-    entity: camera.valperom
-    state_filter:
-      - null
-    show_name: false
-    show_state: false

@@ -1,4 +1,0 @@
-title: Rom
-path: rooms
-panel: false
-cards: !include_dir_merge_list rooms/

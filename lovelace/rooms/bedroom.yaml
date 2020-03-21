@@ -1,9 +1,0 @@
-- type: entities
-  title: Soverom
-  show_header_toggle: false
-  entities:
-    - entity: light.taklys_soverom
-    - entity: light.nattbordslampe
-    - entity: sensor.multi_sensor_soverom_temperatur
-    - entity: sensor.multi_sensor_soverom_luftfuktighet
-    - entity: sensor.multi_sensor_soverom_lufttrykk

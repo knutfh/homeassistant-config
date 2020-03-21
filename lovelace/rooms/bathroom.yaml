@@ -1,9 +1,0 @@
-- type: entities
-  title: Bad
-  show_header_toggle: false
-  entities:
-    - entity: sensor.bathroom_multisensor_temperature
-    - entity: sensor.bathroom_multisensor_relative_humidity
-    - entity: sensor.bathroom_multisensor_luminance
-    - entity: binary_sensor.bathroom_movement
-    - entity: switch.bathroom_ceiling_light

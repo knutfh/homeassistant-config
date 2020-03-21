@@ -11,7 +11,7 @@ appdaemon:
       type: hass
       namespace: hass
       ha_url: http://hassio/homeassistant
-      token: 63dc1813253f9c4a7b966d624f2a42dfd25c6a0a9338ce8a432c85ec3bfc5ec34d7e32f45397c2deb977e197f9cb8aec0503f0d02d5ba7db
+      token: 117b0da4c495d0f72fb5f5f374f32f10b1f5b567765289b766c8aa764b14835f9c0f656b093e600a5b0633d930f7c7d97962fdab6591c628
     MQTT:
       type: mqtt
       namespace: mqtt

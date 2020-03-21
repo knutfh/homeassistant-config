@@ -24,7 +24,7 @@ updater:
 webhook:
 
 lovelace:
-  mode: yaml
+  mode: storage
 
 recorder:
   db_url: !secret mariadb_conn
