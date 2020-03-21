@@ -71,32 +71,6 @@
     - light.horus_5
 
 
-
-- platform: group
-  name: "Taklys soverom"
-  entities:
-    - light.taklys_soverom_1
-    - light.taklys_soverom_2
-
-- platform: rfxtrx
-  #automatic_add: true
-  devices:
-    0710030e41020150:
-      name: Nattbordslampe
-      fire_event: true
-    # 0710030e41030150:
-    #   name: Kjeller gulvlampe
-    #   fire_event: true
-    # 0b11006d01ce6f6e01010f70:
-    #   name: Kjeller lampett 1
-    #   fire_event: true
-    # 0b11007501ce6f6e02010f70:
-    #   name: Kjeller lampett 2
-    #   fire_event: true
-    # 0b11007601ce6f6e03010f70:
-    #   name: Kjeller lampett 3
-    #   fire_event: true
-
 - platform: mqtt
   name: "Garage center"
   state_topic: "stat/garage/POWER1"
