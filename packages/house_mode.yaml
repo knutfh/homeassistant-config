@@ -102,7 +102,7 @@ automation:
     condition:
       condition: state
       entity_id: input_select.house_mode
-      state: "{{ not is_state(input_select.house_mode, 'Natt') }}"
+      state: "{{ not is_state(input_select.house_mode, 'Kveld') }}"
     action:
       service: input_select.select_option
       data:
