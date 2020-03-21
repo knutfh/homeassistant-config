@@ -1,0 +1,38 @@
+
+automation:
+  - alias: Toggle lights kjøkkenbenk
+    trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: 'smart_switch_kjokkenbenk'
+        event: 1002
+    action:
+    - service: light.toggle
+      entity_id: light.kjokkenbenk
+
+  - alias: Dim up lights kjøkkenbenk
+    trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: 'smart_switch_kjokkenbenk'
+        event: 2002
+    action:
+    - service: light.turn_on
+      entity_id: light.kjokkenbenk
+      data:
+        brightness_step_pct: 20
+
+  - alias: Dim down lights kjøkkenbenk
+    trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: 'smart_switch_kjokkenbenk'
+        event: 3002
+    action:
+    - service: light.turn_on
+      entity_id: light.kjokkenbenk
+      data:
+        brightness_step_pct: -20
