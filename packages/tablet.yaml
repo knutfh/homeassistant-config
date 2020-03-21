@@ -4,45 +4,58 @@
 
 ### Control
 rest_command:
-  set_brightness:
-    url: http://10.0.11.2:2323/?cmd=setStringSetting&key=screenBrightness&value={{ states('input_number.tablet_brightness')|int }}&password={{ input_text.tablet_rest_password }}
+  kiosk_command:
+    url: !secret tablet_rest_url
 
-input_number:
-  tablet_brightness:
-    name: Tablet brightness
-    initial: 50
-    min: 0
-    max: 255
-    step: 5
 
-input_text:
-  tablet_rest_password: 
-    name: Tablet rest password
-    initial: !secret tablet_rest_password
-    mode: password
+light:
+  - platform: template
+    lights:
+      tablet_backlight:
+        friendly_name: Tablet Backlight
+        value_template: '{{ states.sensor.kiosk_device_info.attributes["isScreenOn"] }}'
+        level_template: '{{ states.sensor.kiosk_device_info.attributes["screenBrightness"] }}'
+        turn_on:
+          service: rest_command.kiosk_command
+          data:
+            cmd: screenOn
+        turn_off:
+          service: rest_command.kiosk_command
+          data:
+            cmd: screenOff
+        set_level:
+          service: rest_command.kiosk_command
+          data_template:
+            cmd: setStringSetting
+            key: screenBrightness
+            value: '{{ brightness }}'
 
 
 ### Automations
 automation:
-  - id: tablet_brightness_manual
-    alias: Set tablet brightness when input number changes
-    trigger:
-    - platform: state
-      entity_id:  input_number.tablet_brightness
-    action:
-      service: rest_command.set_brightness
-
   - id: tablet_reduce_brightness_at_night
     alias: Reduce tablet brightness at night
     trigger:
-    - platform: state
-      entity_id: input_select.house_mode
-      to: Kveld
+      - platform: state
+        entity_id: input_select.house_mode
+        to: Kveld 
     action: 
-      service: input_number.set_value
+      service: light.turn_on
       data_template: 
-        entity_id: input_number.tablet_brightness
-        value: 5
+        entity_id: light.tablet_backlight
+        brightness_pct: 20
+
+  - id: tablet_increase_brightness_morning
+    alias: Increase tablet brightness in the morning
+    trigger:
+      - platform: state
+        entity_id: input_select.house_mode
+        to: Morgen 
+    action: 
+      service: light.turn_on
+      data_template: 
+        entity_id: light.tablet_backlight
+        brightness_pct: 80
 
 
 
@@ -56,19 +69,12 @@ sensor:
       - screenBrightness
       - motionDetectorState
       - maintenanceMode
-      - appFreeMemory
-      - appUsedMemory
-      - totalFreeMemory
-      - totalUsedMemory
       - hostname4
       - ip4
       - mac
-      - locationLatitude
-      - locationLongitude
-      - locationAltitude
       - startUrl
       - currentPage
-    resource: !secret tablet_rest_url
+    resource: !secret tablet_rest_info_url
     value_template: '{{ value_json.isScreenOn }}'
 
 switch:
