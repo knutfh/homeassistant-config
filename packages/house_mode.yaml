@@ -95,14 +95,14 @@ automation:
         entity_id: input_select.house_mode
         option: Kveld
 
-  - alias: House mode to night
+  - alias: House mode to night at given time
     trigger:
       platform: time
       at: '02:00'
     condition:
       condition: state
       entity_id: input_select.house_mode
-      state: "{{ not is_state(input_select.house_mode, 'Kveld') }}"
+      state: "{{ is_state(input_select.house_mode, 'Kveld') }}"
     action:
       service: input_select.select_option
       data:
