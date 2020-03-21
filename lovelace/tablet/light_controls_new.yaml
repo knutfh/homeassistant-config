@@ -1,0 +1,56 @@
+type: horizontal-stack
+cards:
+  - type: custom:button-card
+    color_type: card
+    entity: light.stue_alle
+    name: Stue
+    show_state: false
+    show_icon: false
+    size: 20%
+    tap_action:
+      action: more-info
+
+  - type: custom:button-card
+    color_type: color-card
+    name: 20%
+    size: 10%
+    tap_action:
+      action: call-service
+      service: light.turn_on
+      service_data:
+        entity_id: light.stue_alle
+        brightness_pct: 20
+    style: |
+          ha-card {
+            box-shadow: none;
+          }
+  
+  - type: custom:button-card
+    color_type: color-card
+    name: 50%
+    size: 10%
+    tap_action:
+      action: call-service
+      service: light.turn_on
+      service_data:
+        entity_id: light.stue_alle
+        brightness_pct: 50
+    style: |
+          ha-card {
+            box-shadow: none;
+          }
+
+  - type: custom:button-card
+    color_type: color-card
+    name: 100%
+    size: 10%
+    tap_action:
+      action: call-service
+      service: light.turn_on
+      service_data:
+        entity_id: light.stue_alle
+        brightness_pct: 100
+    style: |
+          ha-card {
+            box-shadow: none;
+          }

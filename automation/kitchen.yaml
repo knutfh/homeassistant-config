@@ -19,14 +19,8 @@
   action:
   - service: light.turn_on
     entity_id: light.kjokkenbenk
-    data_template:
-      brightness: >
-          {% set suggested = states.light.kjokkenbenk.attributes.brightness|int + 50 %}
-          {% if suggested < 255 %}
-          {{ suggested }}
-          {% else %}
-          255
-          {% endif %}
+    data:
+      brightness_step_pct: 20
 
 - alias: Dim down lights kjøkkenbenk
   trigger:
@@ -38,11 +32,5 @@
   action:
   - service: light.turn_on
     entity_id: light.kjokkenbenk
-    data_template:
-      brightness: >
-          {% set suggested = states.light.kjokkenbenk.attributes.brightness|int - 50 %}
-          {% if suggested > 25 %}
-          {{ suggested }}
-          {% else %}
-          25
-          {% endif %}
+    data:
+      brightness_step_pct: -20
