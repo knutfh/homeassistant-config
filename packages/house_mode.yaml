@@ -10,8 +10,6 @@ input_select:
       - Dag
       - Kveld
       - Natt
-      - Bortreist
-      - Gjestemodus
     initial: Dag
     icon: mdi:home
 
@@ -135,3 +133,30 @@ automation:
     action:
       - service: script.turn_on
         entity_id: script.morgenmodus
+
+scene:
+  - name: Nattmodus off
+    entities:
+      light.stue:
+        state: false
+      light.taklys_gang:
+        state: false
+      light.taklys_kjokken:
+        state: false
+      light.taklys_soverom:
+        state: false
+
+  - name: Nattmodus on
+    entities:
+      light.horus_2:
+        state: true
+        brightness: 30
+      light.taklys_inngang:
+        state: true
+        brightness: 30
+      light.trapp_1:
+        state: true
+        brightness: 30
+      light.kjokkenbenk:
+        state: true
+        brightness: 30
