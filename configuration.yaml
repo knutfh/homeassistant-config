@@ -1,5 +1,4 @@
 homeassistant:
-  customize: !include customize.yaml  
   auth_providers:
    - type: homeassistant
   packages: !include_dir_named packages
@@ -59,7 +58,6 @@ influxdb:
 ############################################
 automation: !include_dir_merge_list automation
 camera: !include cameras.yaml
-group: !include groups.yaml
 homekit: !include homekit.yaml
 light: !include lights.yaml
 scene: !include_dir_merge_list scenes

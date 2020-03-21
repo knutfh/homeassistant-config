@@ -1,0 +1,32 @@
+
+
+automation:
+  # Warning if electric car is home, but not being charged
+  - alias: "Electric car not being charged at home"
+    trigger:
+      platform: state
+      entity_id: device_tracker.wvwzzzauzhw902303
+      to: 'home'
+    condition:
+      - condition: numeric_state
+        entity_id: sensor.wvwzzzauzhw902303_battery_level
+        below: 90
+      - condition: state
+        entity_id: switch.wvwzzzauzhw902303_charging
+        state: 'off'
+    action:
+      - service: notify.ios_knut_iphone
+        data:
+          message: "Elbil lader ikke"
+          
+  # Notify that electric car is fully charged
+  - alias: vw_carid_battery_fully_charged
+    trigger:
+      platform: numeric_state
+      entity_id: switch.wvwzzzauzhw902303_battery_level
+      above: 99
+    action:
+    - service: notify.ios_knut_iphone
+      data_template:
+        title: "El-bazinga er nå fulladet"
+        message: "El-bazinga er nå fulladet"
