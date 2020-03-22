@@ -99,14 +99,6 @@ device_tracker:
 
 
 ############################################
-# Volkswagen Car-net
-############################################
-volkswagencarnet:
-  username: !secret vw_username
-  password: !secret vw_password
-
-
-############################################
 # Tibber
 ############################################
 tibber:

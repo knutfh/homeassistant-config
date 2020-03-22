@@ -1,32 +1,65 @@
-
+############################################
+# Volkswagen Car-net
+############################################
+volkswagencarnet:
+  username: !secret vw_username
+  password: !secret vw_password
+  scan_interval:
+    minutes: 2
+  name:
+    wvwzzzauzhw902303: 'El-Bazinga'
+  resources:
+    - position
+    - distance
+    - climatisation
+    - window_heater
+    - charging
+    - battery_level
+    - service_inspection
+    - last_connected
+    - charging_time_left
+    - electric_range
+    - charge_max_ampere
+    - climatisation_target_temperature
+    - external_power
+    - climatisation_without_external_power
+    - door_locked
+    - request_in_progress
 
 automation:
-  # Warning if electric car is home, but not being charged
-  - alias: "VW: Electric car not being charged at home"
-    trigger:
-      platform: state
-      entity_id: device_tracker.wvwzzzauzhw902303
-      to: 'home'
-    condition:
-      - condition: numeric_state
-        entity_id: sensor.wvwzzzauzhw902303_battery_level
-        below: 90
-      - condition: state
-        entity_id: switch.wvwzzzauzhw902303_charging
-        state: 'off'
-    action:
-      - service: notify.ios_knut_iphone
-        data:
-          message: "Elbil lader ikke"
-          
-  # Notify that electric car is fully charged
-  - alias: vw_carid_battery_fully_charged
+  - id: vw_notify_fully_charged
+    alias: "VW: Notify when car is fully charged"
     trigger:
       platform: numeric_state
-      entity_id: switch.wvwzzzauzhw902303_battery_level
+      entity_id: sensor.el_bazinga_battery_level
       above: 99
     action:
-    - service: notify.ios_knut_iphone
+      service: notify.mobile_app_knut_iphone
       data_template:
-        title: "El-bazinga er nå fulladet"
-        message: "El-bazinga er nå fulladet"
+        title: "Elbilen er fulladet"
+        message: "Elbilen er fulladet"
+
+  - id: vw_notify_car_not_charging
+    alias: "VW: Car not charging when at home and battery < 90%"
+    trigger:
+      platform: time_pattern
+      minutes: "/5"
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: device_tracker.el_bazinga
+          state: 'home'
+          for:
+            minutes: 20
+        - condition: numeric_state
+          entity_id: sensor.el_bazinga_battery_level
+          below: 90
+        - condition: state
+          entity_id: switch.el_bazinga_charging
+          state: 'off'
+    action:
+      service: notify.mobile_app_knut_iphone
+      data_template:
+        title: "Elbil lader ikke"
+        message: "Elbilen har {{ sensor.el_bazinga_battery_level }}% batterinivå."
