@@ -56,7 +56,7 @@ influxdb:
 ############################################
 # Includes
 ############################################
-automation: !include_dir_merge_list automation
+automation: !include automations.yaml
 camera: !include cameras.yaml
 homekit: !include homekit.yaml
 light: !include lights.yaml
