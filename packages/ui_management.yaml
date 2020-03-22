@@ -10,7 +10,7 @@ automation:
     action:
       - service: frontend.set_theme
         data:
-          name: 'clear-dark'
+          name: 'noctis-grey'
 
   - alias: "UI: Set default theme at sunrise"
     trigger:
