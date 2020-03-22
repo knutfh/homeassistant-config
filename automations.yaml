@@ -7,3 +7,21 @@
   action:
   - service: homekit.start
   id: 71f013a0065d4d7eb28363dd4d2ad19c
+
+- id: '1584906173138'
+  alias: HASS update available
+  description: Notify Knut that a HASS update is available
+  trigger:
+  - entity_id: binary_sensor.updater
+    from: '''off'''
+    platform: state
+    to: '''on'''
+  condition: []
+  action:
+  - data_template:
+      title: "Home Assistant-oppdatering"
+      message: "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} er nå tilgjengelig."
+      data:
+        attachment: 
+         url: "{{ state_attr('binary_sensor.updater', 'release_notes') }}"
+    service: notify.mobile_app_knut_iphone
