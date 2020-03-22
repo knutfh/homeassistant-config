@@ -57,6 +57,29 @@ automation:
         entity_id: light.tablet_backlight
         brightness_pct: 80
 
+  - id: tablet_stop_charging
+    alias: "Tablet: Stop charging"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tablet_rest
+        value_template: "{{ state.attributes.batteryLevel }}"
+        above: 80
+    action:
+      service: switch.turn_off
+      entity_id: switch.tablet_power_switch
+
+  - id: tablet_start_charging
+    alias: "Tablet: Start charging"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tablet_rest
+        value_template: "{{ state.attributes.batteryLevel }}"
+        below: 25
+    action:
+      service: switch.turn_on
+      entity_id: switch.tablet_power_switch
+
+
 
 
 ### Sensors
