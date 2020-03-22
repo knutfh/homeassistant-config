@@ -38,8 +38,8 @@ sensor:
           - Humidity
 
 automation:
-  - id: turn_off_basement_light_delay
-    alias: Turn off basement light delay
+  - id: basement_turn_off_light_delay
+    alias: 'Basement: Turn off light delay'
     trigger:
     - platform: state
       entity_id:  binary_sensor.bevegelse_kjellerstue
@@ -50,8 +50,8 @@ automation:
       data:
         entity_id: timer.basement_light_turnoff
       
-  - id: turn_off_basement_light
-    alias: Turn off basement light
+  - id: basement_turn_off_light
+    alias: 'Basement: Turn off light'
     trigger:
     - platform: event
       event_type: timer.finished
@@ -62,8 +62,8 @@ automation:
       data:
         entity_id: light.alt_lys_kjeller
       
-  - id: turn_on_basement_light
-    alias: Turn on basement light
+  - id: basement_turn_on_light
+    alias: 'Basement: Turn on light'
     trigger:
     - platform: state
       entity_id:  binary_sensor.bevegelse_kjellerstue
@@ -77,7 +77,8 @@ automation:
       data:
         entity_id: timer.basement_light_turnoff
 
-  - alias: Toggle basement light on single click
+  - id: basement_toggle_light_single_click
+    alias: 'Basement: Toggle light on single click'
     trigger:
     - platform: event
       event_type: deconz_event
@@ -89,11 +90,12 @@ automation:
       entity_id: light.alt_lys_kjeller
     - service: automation.turn_off
       entity_id: 
-        - automation.turn_on_basement_light
-        - automation.turn_off_basement_light
-        - automation.turn_off_basement_light_delay
+        - automation.basement_turn_on_light
+        - automation.basement_turn_off_light
+        - automation.basement_turn_off_light_delay
 
-  - alias: Activate basement light automation double click
+  - id: basement_light_on_double_click
+    alias: 'Basement: Activate light automation double click'
     trigger:
       - platform: event
         event_type: deconz_event
@@ -103,18 +105,18 @@ automation:
     action:
       - service: automation.turn_on
         entity_id:
-          - automation.turn_off_basement_light
-          - automation.turn_off_basement_light_delay
-          - automation.turn_on_basement_light
+          - automation.basement_turn_off_light
+          - automation.basement_turn_off_light_delay
+          - automation.basement_turn_on_light
       - service: automation.trigger
-        entity_id: automation.turn_off_basement_light
+        entity_id: automation.basement_turn_off_light
 
 
 switch:
   - platform: rfxtrx
     devices:
       0b11000544bc0cfe08010f70:
-        name: HeaterOfficeBasement
+        name: basement_office_heater
         fire_event: true
 
 
@@ -122,5 +124,5 @@ switch:
 climate:
   - platform: generic_thermostat
     name: Termostat kontor kjeller
-    heater: switch.heaterofficebasement
+    heater: switch.basement_office_heater
     target_sensor: sensor.t10_temperature

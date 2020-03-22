@@ -59,7 +59,7 @@ script:
 
 automation:
   # Morning mode at 05:15 on weekdays, else 08:00
-  - alias: House mode to morning
+  - alias: "House mode: To morning"
     trigger:
       platform: template
       value_template: '{% if is_state("binary_sensor.workday_today", "on") and is_state("sensor.time", "05:15") or is_state("binary_sensor.workday_today", "off") and is_state("sensor.time", "08:00")-%}true{%- endif %}' 
@@ -69,7 +69,7 @@ automation:
         entity_id: input_select.house_mode
         option: Morgen
   
-  - alias: House mode to day
+  - alias: "House mode: To day"
     trigger:
       platform: time
       at: '10:00'
@@ -79,7 +79,7 @@ automation:
         entity_id: input_select.house_mode
         option: Dag
 
-  - alias: House mode to evening
+  - alias: "House mode: To evening"
     trigger:
       platform: template
       value_template: '{% if is_state("binary_sensor.workday_tomorrow", "on") and is_state("sensor.time", "21:00") or is_state("binary_sensor.workday_tomorrow", "off") and is_state("sensor.time", "23:45")-%}true{%- endif %}' 
@@ -93,7 +93,7 @@ automation:
         entity_id: input_select.house_mode
         option: Kveld
 
-  - alias: House mode to night at given time
+  - alias: "House mode: To night at given time"
     trigger:
       platform: time
       at: '02:00'
@@ -107,7 +107,7 @@ automation:
         entity_id: input_select.house_mode
         option: Natt
 
-  - alias: Notify changed housemode
+  - alias: "House mode: Notify changed mode"
     trigger:
       platform: state
       entity_id: input_select.house_mode
@@ -116,7 +116,7 @@ automation:
       data:
         message: "House set to {{ states('input_select.house_mode') }}"
 
-  - alias: "Activate night scene"
+  - alias: "House mode: Activate night scene"
     trigger:
       platform: state
       entity_id: input_select.house_mode
@@ -125,7 +125,7 @@ automation:
       - service: script.turn_on
         entity_id: script.nattmodus
 
-  - alias: "Activate morning scene"
+  - alias: "House mode: Activate morning scene"
     trigger:
       platform: state
       entity_id: input_select.house_mode

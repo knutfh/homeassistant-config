@@ -1,6 +1,6 @@
 
 automation:
-  - alias: Toggle lights kjøkkenbenk
+  - alias: "Kitchen: Toggle lights kjøkkenbenk"
     trigger:
     - platform: event
       event_type: deconz_event
@@ -11,7 +11,7 @@ automation:
     - service: light.toggle
       entity_id: light.kjokkenbenk
 
-  - alias: Dim up lights kjøkkenbenk
+  - alias: "Kitchen: Dim up lights kjøkkenbenk"
     trigger:
     - platform: event
       event_type: deconz_event
@@ -24,7 +24,7 @@ automation:
       data:
         brightness_step_pct: 20
 
-  - alias: Dim down lights kjøkkenbenk
+  - alias: "Kitchen: Dim down lights kjøkkenbenk"
     trigger:
     - platform: event
       event_type: deconz_event

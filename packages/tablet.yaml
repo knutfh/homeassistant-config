@@ -34,7 +34,7 @@ light:
 ### Automations
 automation:
   - id: tablet_reduce_brightness_at_night
-    alias: Reduce tablet brightness at night
+    alias: "Tablet: Reduce brightness at night"
     trigger:
       - platform: state
         entity_id: input_select.house_mode
@@ -46,7 +46,7 @@ automation:
         brightness_pct: 20
 
   - id: tablet_increase_brightness_morning
-    alias: Increase tablet brightness in the morning
+    alias: "Tablet: Increase brightness in the morning"
     trigger:
       - platform: state
         entity_id: input_select.house_mode
@@ -81,5 +81,5 @@ switch:
   - platform: rfxtrx
     devices:
       0b11000512bc0cfe08010f70:
-        name: TabletPowerSwitch
+        name: tablet_power_switch
         fire_event: true

@@ -1,5 +1,5 @@
 automation:
-  - alias: Turn on bathroom lights
+  - alias: "Bathroom: Turn on lights"
     trigger:
       platform: state
       entity_id: binary_sensor.bathroom_movement
@@ -15,7 +15,7 @@ automation:
       #   data:
       #     message: "Baderomslys PÅ"
     
-  - alias: Turn off bathroom lights
+  - alias: "Bathroom: Turn off lights"
     trigger:
       platform: state
       entity_id: binary_sensor.bathroom_movement

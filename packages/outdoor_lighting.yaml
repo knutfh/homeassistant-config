@@ -28,7 +28,7 @@ light:
   retain: false
 
 automation:
-- alias: Sunset automation
+- alias: "Outdoor lights: Sunset automation"
   trigger:
     platform: sun
     event: sunset
@@ -36,7 +36,7 @@ automation:
     - service: light.turn_on
       entity_id: light.garage_outside
   
-- alias: Sunrise automation
+- alias: "Outdoor lights: Sunrise automation"
   trigger:
     platform: sun
     event: sunrise

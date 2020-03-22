@@ -3,7 +3,7 @@
 ########################################
 
 automation:
-  - alias: "Set dark theme at night"
+  - alias: "UI: Set dark theme at night"
     trigger:
       platform: sun
       event: sunset
@@ -12,7 +12,7 @@ automation:
         data:
           name: 'clear-dark'
 
-  - alias: "Set default theme at sunrise"
+  - alias: "UI: Set default theme at sunrise"
     trigger:
       platform: sun
       event: sunrise
@@ -21,7 +21,7 @@ automation:
         data:
           name: 'default'
 
-  - alias: "Activate show outdoor lights in UI"
+  - alias: "UI: Activate show outdoor lights"
     trigger:
       platform: sun
       event: sunset
@@ -30,7 +30,7 @@ automation:
         data_template:
           entity_id: input_boolean.show_outdoor_lights
 
-  - alias: "Deactivate show outdoor lights in UI"
+  - alias: "UI: Deactivate show outdoor lights in UI"
     trigger:
       platform: sun
       event: sunrise

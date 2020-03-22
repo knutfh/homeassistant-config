@@ -22,7 +22,7 @@ light:
         fire_event: true
 
 automation:
-  - alias: Turn on bedroom nightstand light on double click
+  - alias: "Bedroom: Turn on nightstand light on double click"
     trigger:
     - platform: event
       event_type: deconz_event
@@ -39,7 +39,7 @@ automation:
     - service: input_boolean.turn_on
       entity_id: input_boolean.bed_light_toggle_memory
       
-  - alias: Turn off bedroom nightstand light on double click
+  - alias: "Bedroom: Turn off nightstand light on double click"
     trigger:
     - platform: event
       event_type: deconz_event
@@ -56,7 +56,7 @@ automation:
     - service: input_boolean.turn_off
       entity_id: input_boolean.bed_light_toggle_memory
       
-  - alias: Set house to night mode on triple click after 21
+  - alias: "Bedroom: Set house to night mode on triple click after 21"
     trigger:
     - platform: event
       event_type: deconz_event
@@ -72,7 +72,7 @@ automation:
         entity_id: input_select.house_mode
         option: Natt
         
-  - alias: Activate night scene on triple click before 21
+  - alias: "Bedroom: Activate night scene on triple click before 21"
     trigger:
     - platform: event
       event_type: deconz_event

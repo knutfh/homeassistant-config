@@ -2,7 +2,7 @@
 
 automation:
   # Warning if electric car is home, but not being charged
-  - alias: "Electric car not being charged at home"
+  - alias: "VW: Electric car not being charged at home"
     trigger:
       platform: state
       entity_id: device_tracker.wvwzzzauzhw902303
