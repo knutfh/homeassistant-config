@@ -1,0 +1,105 @@
+sensor:
+  - platform: rfxtrx
+    automatic_add: True
+    devices:
+      08500704970000ed79: # Viking Thermometer 2
+        name: Stue
+
+automation:
+  - alias: Turn off livingroom light
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.fjernkontroll_stue_3
+      to: 'off'
+    action:
+    - service: light.turn_off
+      entity_id: light.stue
+
+  - alias: Turn on livingroom light
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.fjernkontroll_stue_3
+      to: 'on'
+    action:
+    - service: light.turn_on
+      entity_id: light.stue
+
+script:
+  sonos_dog_playlist:
+    sequence:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.stue
+          volume_level: 0.5
+      - service: media_player.select_source
+        data:
+          entity_id: media_player.stue
+          source: "Mix Megapol"
+      - service: media_player.play_media
+        data:
+          entity_id: media_player.stue
+          media_content_type: music
+          media_content_id: 
+
+light:
+  - platform: group
+    name: Stue
+    entities:
+      - light.trapp_1
+      - light.trapp_2
+      - light.trapp_3
+      - light.trapp_4
+      - light.trapp_5
+      - light.trapp_6
+      - light.trapp_7
+      - light.trapp_8
+      - light.horus_1
+      - light.horus_2
+      - light.horus_3
+      - light.horus_4
+      - light.horus_5
+      - light.horus_6
+      - light.horus_7
+      - light.horus_8
+      - light.horus_9
+      - light.horus_10
+      - light.hund_1
+      - light.hund_2
+      - light.hund_3
+      - light.hund_4
+
+  - platform: group
+    name: "Trapp"
+    entities:
+      - light.trapp_1
+      - light.trapp_2
+      - light.trapp_3
+      - light.trapp_4
+      - light.trapp_5
+      - light.trapp_6
+      - light.trapp_7
+      - light.trapp_8
+
+  - platform: group
+    name: "Hund"
+    entities:
+      - light.hund_1
+      - light.hund_2
+      - light.hund_3
+      - light.hund_4
+
+  - platform: group
+    name: "Spisebord"
+    entities:
+      - light.horus_6
+      - light.horus_7
+      - light.horus_8
+      - light.horus_9
+
+  - platform: group
+    name: "Valpehage"
+    entities:
+      - light.trapp_6
+      - light.trapp_7
+      - light.trapp_8
+      - light.horus_5
