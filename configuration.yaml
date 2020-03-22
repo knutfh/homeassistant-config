@@ -29,9 +29,9 @@ recorder:
   db_url: !secret mariadb_conn
 
 logger:
-  default: error
+  default: warning
   logs:
-    homeassistant.components.rfxtrx: debug
+    homeassistant.components.rfxtrx: error
     custom_components.volkswagencarnet: error
 
 http:
