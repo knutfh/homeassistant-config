@@ -112,7 +112,7 @@ automation:
       platform: state
       entity_id: input_select.house_mode
     action:
-      service: notify.mobile_app_siphone
+      service: notify.mobile_app_knut_iphone
       data:
         message: "House set to {{ states('input_select.house_mode') }}"
 
