@@ -1,0 +1,51 @@
+########################################
+#  UI Management
+########################################
+
+automation:
+  - alias: "Set dark theme at night"
+    trigger:
+      platform: sun
+      event: sunset
+    action:
+      - service: frontend.set_theme
+        data:
+          name: 'clear-dark'
+
+  - alias: "Set default theme at sunrise"
+    trigger:
+      platform: sun
+      event: sunrise
+    action:
+      - service: frontend.set_theme
+        data:
+          name: 'default'
+
+  - alias: "Activate show outdoor lights in UI"
+    trigger:
+      platform: sun
+      event: sunset
+    action:
+      - service: input_boolean.turn_on
+        data_template:
+          entity_id: input_boolean.show_outdoor_lights
+
+  - alias: "Deactivate show outdoor lights in UI"
+    trigger:
+      platform: sun
+      event: sunrise
+    action:
+      - service: input_boolean.turn_off
+        data_template:
+          entity_id: input_boolean.show_outdoor_lights
+
+
+########################################
+#  INPUT BOOLEAN
+########################################
+
+input_boolean:
+  show_outdoor_lights:
+    name: Show outdoor lights in UI
+    initial: off
+

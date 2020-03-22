@@ -27,11 +27,6 @@ light:
   payload_not_available: "Offline"
   retain: false
 
-input_boolean:
-  show_outdoor_lights:
-    name: Show outdoor lights in UI
-    initial: off
-
 automation:
 - alias: Sunset automation
   trigger:
@@ -40,8 +35,6 @@ automation:
   action:
     - service: light.turn_on
       entity_id: light.garage_outside
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.show_outdoor_lights
   
 - alias: Sunrise automation
   trigger:
@@ -50,5 +43,3 @@ automation:
   action:
     - service: light.turn_off
       entity_id: light.garage_outside, light.hagelys
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.show_outdoor_lights
