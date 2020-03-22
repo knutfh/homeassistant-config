@@ -49,6 +49,6 @@ automation:
     event: sunrise
   action:
     - service: light.turn_off
-      entity_id: light.garage_outside
+      entity_id: light.garage_outside, light.hagelys
     - service: input_boolean.turn_off
       entity_id: input_boolean.show_outdoor_lights
