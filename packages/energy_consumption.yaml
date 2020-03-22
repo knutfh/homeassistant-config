@@ -138,19 +138,19 @@ sensor:
       nv15_a_l1:
         friendly_name: Strøm L1
         unit_of_measurement: A
-        value_template: "{{ state_attr('sensor.real_time_consumption_norumvegen_15', 'currentPhase1')}}"
+        value_template: "{{ state_attr('sensor.real_time_consumption_norumvegen_15', 'currentL1')}}"
         icon_template: mdi:current-ac
 
       nv15_a_l2:
         friendly_name: Strøm L2
         unit_of_measurement: A
-        value_template: "{{ state_attr('sensor.real_time_consumption_norumvegen_15', 'currentPhase2')}}"
+        value_template: "{{ state_attr('sensor.real_time_consumption_norumvegen_15', 'currentL2')}}"
         icon_template: mdi:current-ac
 
       nv15_a_l3:
         friendly_name: Strøm L3
         unit_of_measurement: A
-        value_template: "{{ state_attr('sensor.real_time_consumption_norumvegen_15', 'currentPhase3')}}"
+        value_template: "{{ state_attr('sensor.real_time_consumption_norumvegen_15', 'currentL3')}}"
         icon_template: mdi:current-ac
 
       
@@ -231,17 +231,17 @@ sensor:
       nv17_a_l1:
         friendly_name: Strøm L1
         unit_of_measurement: A
-        value_template: "{{ state_attr('sensor.real_time_consumption_norumvegen_17', 'currentPhase1')}}"
+        value_template: "{{ state_attr('sensor.real_time_consumption_norumvegen_17', 'currentL1')}}"
         icon_template: mdi:current-ac
 
       nv17_a_l2:
         friendly_name: Strøm L2
         unit_of_measurement: A
-        value_template: "{{ state_attr('sensor.real_time_consumption_norumvegen_17', 'currentPhase2')}}"
+        value_template: "{{ state_attr('sensor.real_time_consumption_norumvegen_17', 'currentL2')}}"
         icon_template: mdi:current-ac
 
       nv17_a_l3:
         friendly_name: Strøm L3
         unit_of_measurement: A
-        value_template: "{{ state_attr('sensor.real_time_consumption_norumvegen_17', 'currentPhase3')}}"
+        value_template: "{{ state_attr('sensor.real_time_consumption_norumvegen_17', 'currentL3')}}"
         icon_template: mdi:current-ac
