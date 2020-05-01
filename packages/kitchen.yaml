@@ -11,7 +11,7 @@ automation:
     - service: light.toggle
       entity_id: light.kjokkenbenk
 
-  - alias: "Kitchen: Dim up lights kjøkkenbenk"
+  - alias: "Kitchen: Lights kjøkkenbenk to 100%"
     trigger:
     - platform: event
       event_type: deconz_event
@@ -22,9 +22,22 @@ automation:
     - service: light.turn_on
       entity_id: light.kjokkenbenk
       data:
-        brightness_step_pct: 20
+        brightness_pct: 100
 
-  - alias: "Kitchen: Dim down lights kjøkkenbenk"
+  - alias: "Kitchen: Lights kjøkkenbenk to 75%"
+    trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: 'smart_switch_kjokkenbenk'
+        event: 5002
+    action:
+    - service: light.turn_on
+      entity_id: light.kjokkenbenk
+      data:
+        brightness_pct: 75
+
+  - alias: "Kitchen: Light kjøkkenbenk to 50%"
     trigger:
     - platform: event
       event_type: deconz_event
@@ -35,4 +48,17 @@ automation:
     - service: light.turn_on
       entity_id: light.kjokkenbenk
       data:
-        brightness_step_pct: -20
+        brightness_pct: 50
+
+  - alias: "Kitchen: Light kjøkkenbenk to 25%"
+    trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: 'smart_switch_kjokkenbenk'
+        event: 4002
+    action:
+    - service: light.turn_on
+      entity_id: light.kjokkenbenk
+      data:
+        brightness_pct: 25
