@@ -40,11 +40,11 @@ script:
   ### Morgenmodus
   morgenmodus:
     sequence:
-      - service: light.turn_on
+      - service: light.turn_off
         data:
           entity_id: light.taklys_gang, light.horus_2, light.trapp_1
           brightness: 20
-      - service: light.turn_on
+      - service: light.turn_off
         data:
           entity_id: light.kjokkenbenk, light.taklys_inngang
           brightness: 200
@@ -97,10 +97,6 @@ automation:
     trigger:
       platform: time
       at: '02:00'
-    condition:
-      condition: state
-      entity_id: input_select.house_mode
-      state: "{{ is_state(input_select.house_mode, 'Kveld') }}"
     action:
       service: input_select.select_option
       data:
