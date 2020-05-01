@@ -1,0 +1,82 @@
+
+sensor:
+  - platform: rfxtrx
+    devices:
+      0a5209114a0000952d0179:
+        name: T10
+        data_type:
+          - Temperature
+          - Humidity
+
+
+switch:
+  - platform: rfxtrx
+    devices:
+      0b11000544bc0cfe08010f70:
+        name: basement_office_heater
+        fire_event: true
+
+
+climate:
+  - platform: generic_thermostat
+    name: Termostat kontor kjeller
+    heater: switch.basement_office_heater
+    target_sensor: sensor.t10_temperature
+
+
+input_number:
+  office_heat_on:
+    name: 'Office heater off delay'
+    initial: 30
+    min: 5
+    max: 600
+    step: 5
+  office_occupied_temperature_setpoint:
+    name: "Office occupied temperature setpoint"
+    min: 15
+    max: 25
+    step: 1
+  office_unoccupied_temperature_setpoint:
+    name: "Office unoccupied temperature setpoint"
+    min: 8
+    max: 25
+    step: 1
+
+
+
+timer:
+  office_heat_on:
+    name: "Office heat on"
+      
+      # >- 
+      #  "{{states('input_number.office_heat_on')|int|multiply(60)| timestamp_custom('%H:%M:%S', 0)}}"
+
+automation:
+  - id: office_turn_on_heater_on_motion
+    alias: 'Office: Set temperature on motion'
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.bevegelse_kontor
+      from: "off"
+      to: "on"
+    action:
+      - service: timer.start
+        data:
+          entity_id: timer.office_heat_on
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.termostat_kontor_kjeller
+          temperature: "{{ states.input_number.office_occupied_temperature_setpoint.state | int}}"
+
+  - id: office_turn_off_heater_after_delay
+    alias: "Office: Adjust temperature when unoccupied after timeout"
+    trigger:
+      - platform: state
+        entity_id: timer.office_heat_on
+        from: "active"
+        to: "idle"
+    action:
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.termostat_kontor_kjeller
+          temperature: "{{ states.input_number.office_unoccupied_temperature_setpoint.state | int}}"
