@@ -7,7 +7,6 @@
   action:
   - service: homekit.start
   id: 71f013a0065d4d7eb28363dd4d2ad19c
-
 - id: '1584906173138'
   alias: HASS update available
   description: Notify Knut that a HASS update is available
@@ -19,9 +18,27 @@
   condition: []
   action:
   - data_template:
-      title: "Home Assistant-oppdatering"
-      message: "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} er nå tilgjengelig."
+      title: Home Assistant-oppdatering
+      message: Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version')
+        }} er nå tilgjengelig.
       data:
-        attachment: 
-         url: "{{ state_attr('binary_sensor.updater', 'release_notes') }}"
+        attachment:
+          url: '{{ state_attr(''binary_sensor.updater'', ''release_notes'') }}'
     service: notify.mobile_app_knut_iphone
+- id: '1591439705611'
+  alias: Tablet cycle power
+  description: ''
+  trigger:
+  - above: '0'
+    below: '100'
+    entity_id: sensor.tablet_rest
+    platform: numeric_state
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.tablet_power_switch
+    service: switch.turn_off
+  - delay: 00:00:01
+  - data: {}
+    entity_id: switch.tablet_power_switch
+    service: switch.turn_on
