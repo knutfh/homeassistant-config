@@ -63,7 +63,7 @@ automation:
       - platform: numeric_state
         entity_id: sensor.tablet_rest
         value_template: "{{ state.attributes.batteryLevel }}"
-        above: 80
+        above: 99
     action:
       service: switch.turn_off
       entity_id: switch.tablet_power_switch
@@ -74,13 +74,10 @@ automation:
       - platform: numeric_state
         entity_id: sensor.tablet_rest
         value_template: "{{ state.attributes.batteryLevel }}"
-        below: 25
+        below: 65
     action:
       service: switch.turn_on
       entity_id: switch.tablet_power_switch
-
-
-
 
 ### Sensors
 sensor:
@@ -98,7 +95,7 @@ sensor:
       - startUrl
       - currentPage
     resource: !secret tablet_rest_info_url
-    value_template: '{{ value_json.isScreenOn }}'
+    value_template: '{{ value_json.batteryLevel }}'
 
 switch:
   - platform: rfxtrx
