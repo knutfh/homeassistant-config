@@ -2,7 +2,7 @@
 Support for Volkswagen Carnet Platform
 """
 import logging
-from homeassistant.components.climate import ClimateDevice
+from homeassistant.components.climate import ClimateEntity
 from homeassistant.components.climate.const import (HVAC_MODE_HEAT, HVAC_MODE_OFF, SUPPORT_TARGET_TEMPERATURE)
 from homeassistant.const import ATTR_TEMPERATURE, TEMP_CELSIUS, TEMP_FAHRENHEIT, STATE_UNKNOWN
 
@@ -12,13 +12,13 @@ from . import VolkswagenEntity, DATA_KEY
 
 _LOGGER = logging.getLogger(__name__)
 
-def setup_platform(hass, config, add_devices, discovery_info=None):
+async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
     """ Setup the volkswagen climate."""
     if discovery_info is None:
         return
-    add_devices([VolkswagenClimate(hass.data[DATA_KEY], *discovery_info)])
+    async_add_entities([VolkswagenClimate(hass.data[DATA_KEY], *discovery_info)])
 
-class VolkswagenClimate(VolkswagenEntity, ClimateDevice):
+class VolkswagenClimate(VolkswagenEntity, ClimateEntity):
     """Representation of a Volkswagen Carnet Climate."""
 
     @property
@@ -34,7 +34,6 @@ class VolkswagenClimate(VolkswagenEntity, ClimateDevice):
         if self.instrument.hvac_mode:
             return HVAC_MODE_HEAT
         return HVAC_MODE_OFF
-
 
     @property
     def hvac_modes(self):
@@ -56,17 +55,17 @@ class VolkswagenClimate(VolkswagenEntity, ClimateDevice):
         else:
             return STATE_UNKNOWN
 
-    def set_temperature(self, **kwargs):
+    async def async_set_temperature(self, **kwargs):
         """Set new target temperatures."""
         _LOGGER.debug("Setting temperature for: %s", self.instrument.attr)
         temperature = kwargs.get(ATTR_TEMPERATURE)
         if temperature:
-            self.instrument.set_temperature(temperature)
+            await self.instrument.set_temperature(temperature)
 
-    def set_hvac_mode(self, hvac_mode):
+    async def async_set_hvac_mode(self, hvac_mode):
         """Set new target hvac mode."""
         _LOGGER.debug("Setting mode for: %s", self.instrument.attr)
         if hvac_mode == HVAC_MODE_OFF:
-            self.instrument.set_hvac_mode(False)
+            await self.instrument.set_hvac_mode(False)
         elif hvac_mode == HVAC_MODE_HEAT:
-            self.instrument.set_hvac_mode(True)
+            await self.instrument.set_hvac_mode(True)

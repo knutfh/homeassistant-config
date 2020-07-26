@@ -3,17 +3,17 @@ Support for Volkswagen Carnet.
 """
 import logging
 from . import VolkswagenEntity, DATA_KEY
-from homeassistant.components.binary_sensor import BinarySensorDevice, DEVICE_CLASSES
+from homeassistant.components.binary_sensor import BinarySensorEntity, DEVICE_CLASSES
 
 _LOGGER = logging.getLogger(__name__)
 
-def setup_platform(hass, config, add_devices, discovery_info=None):
+async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
     """Set up the Volkswagen binary sensors."""
     if discovery_info is None:
         return
-    add_devices([VolkswagenBinarySensor(hass.data[DATA_KEY], *discovery_info)])
+    async_add_entities([VolkswagenBinarySensor(hass.data[DATA_KEY], *discovery_info)])
 
-class VolkswagenBinarySensor(VolkswagenEntity, BinarySensorDevice):
+class VolkswagenBinarySensor(VolkswagenEntity, BinarySensorEntity):
     """Representation of a Volkswagen Binary Sensor """
 
     @property
