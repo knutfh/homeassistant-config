@@ -15,7 +15,7 @@ light:
       - light.taklys_soverom_2
   - platform: switch
     name: Nattbordslampe
-    entity: switch.nattbordslampe
+    entity_id: switch.nattbordslampe
 
 automation:
   - alias: "Bedroom: Turn on nightstand light on double click"
