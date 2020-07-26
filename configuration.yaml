@@ -73,62 +73,6 @@ browser_mod:
       name: tablet
 
 
-############################################
-# RFXtrx configuration
-############################################
-rfxtrx:
-  device: /dev/ttyUSB1
-  devices:
-    # Valperom, Viking Thermometer 1
-    085007d9960000e979:
-    # Ute kjellertrapp, Viking Thermometer 3
-    0850070f9f0000e879:
-    #Ute inngang, Oregon Scientific
-    08500220c201012569:
-
-    # Tablet power switch
-    0b11000512bc0cfe08010f70:
-      fire_event: True
-
-    # basement_office_heater
-    0b11000544bc0cfe08010f70:
-      fire_event: True
-
-    # T10 thermometer basement office
-    0a5209114a0000952d0179:
-
-    # Nattbordslampe
-    0710030e41020250:
-      device_class: light
-      fire_event: True
-
-    # Temperatur stue, Viking Thermometer 2
-    08500704970000ed79:
-
-    # Temperatur vaskerom
-    0a520950190000a3320179:
-    
-    # Kjeller gulvlampe
-    0710030e41030150:
-      device_class: light
-      fire_event: True
-
-    # Kjeller lampett 1
-    0b11006d01ce6f6e01010f70:
-      device_class: light
-      fire_event: True
-
-    # Kjeller lampett 2
-    0b11007501ce6f6e02010f70:
-      device_class: light
-      fire_event: True
-      
-    # Kjeller lampett 3
-    0b11007601ce6f6e03010f70:
-      device_class: light
-      fire_event: True
-
-
 ############################################ 
 # Text to speech
 ############################################
