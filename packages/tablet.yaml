@@ -96,10 +96,3 @@ sensor:
       - currentPage
     resource: !secret tablet_rest_info_url
     value_template: '{{ value_json.batteryLevel }}'
-
-switch:
-  - platform: rfxtrx
-    devices:
-      0b11000512bc0cfe08010f70:
-        name: tablet_power_switch
-        fire_event: true

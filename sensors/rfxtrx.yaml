@@ -1,9 +1,0 @@
-- platform: rfxtrx
-  automatic_add: True
-  devices:
-    08500220c201012569: # Oregon Scientific thermometer
-      name: Ute inngang
-    085007d9960000e979: # Viking Thermometer 1
-      name: Valperom
-    0850070f9f0000e879: # Viking Thermometer 3
-      name: Ute kjellertrapp

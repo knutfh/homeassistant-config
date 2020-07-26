@@ -3,34 +3,14 @@
 ########################################
 
 light:
-  - platform: rfxtrx
-    devices:
-      0710030e41030150:
-        name: Kjeller gulvlampe
-        fire_event: true
-      0b11006d01ce6f6e01010f70:
-        name: Kjeller lampett 1
-        fire_event: true
-      0b11007501ce6f6e02010f70:
-        name: Kjeller lampett 2
-        fire_event: true
-      0b11007601ce6f6e03010f70:
-        name: Kjeller lampett 3
-        fire_event: true
+  platform: switch
+  name: Kjeller gulvlampe
+  entity_id: switch.kjeller_gulvlampe
 
 timer:
   basement_light_turnoff:
     name: Time remaining
     duration: 600
-
-sensor:
-  - platform: rfxtrx
-    devices:
-      0a520950190000a3320179:
-        name: Vaskerom
-        data_type:
-          - Temperature
-          - Humidity
 
 automation:
   - id: basement_turn_off_light_delay

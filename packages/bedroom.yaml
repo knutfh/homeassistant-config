@@ -13,13 +13,9 @@ light:
     entities:
       - light.taklys_soverom_1
       - light.taklys_soverom_2
-
-  - platform: rfxtrx
-    #automatic_add: true
-    devices:
-      0710030e41020150:
-        name: Nattbordslampe
-        fire_event: true
+  - platform: switch
+    name: Nattbordslampe
+    entity: switch.nattbordslampe
 
 automation:
   - alias: "Bedroom: Turn on nightstand light on double click"

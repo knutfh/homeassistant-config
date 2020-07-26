@@ -1,22 +1,3 @@
-
-sensor:
-  - platform: rfxtrx
-    devices:
-      0a5209114a0000952d0179:
-        name: T10
-        data_type:
-          - Temperature
-          - Humidity
-
-
-switch:
-  - platform: rfxtrx
-    devices:
-      0b11000544bc0cfe08010f70:
-        name: basement_office_heater
-        fire_event: true
-
-
 climate:
   - platform: generic_thermostat
     name: Termostat kontor kjeller
