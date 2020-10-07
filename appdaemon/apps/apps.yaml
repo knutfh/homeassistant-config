@@ -1,0 +1,10 @@
+---
+hello_world:
+  module: hello
+  class: HelloWorld
+
+do_dns:
+  module: do_dns
+  class: DoDns
+  api_key: !secret do_apikey
+  domain: !secret do_domain
