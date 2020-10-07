@@ -1,16 +1,3 @@
-
-- platform: group
-  name: Alt lys kjeller
-  entities:
-    - light.kjeller_gulvlampe
-    - light.kjeller_lampett_1
-    - light.kjeller_lampett_2
-    - light.kjeller_lampett_3
-  
-    
-
-
-
 - platform: mqtt
   name: "Garage center"
   state_topic: "stat/garage/POWER1"

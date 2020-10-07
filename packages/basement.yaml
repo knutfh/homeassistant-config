@@ -3,9 +3,29 @@
 ########################################
 
 light:
-  platform: switch
-  name: Kjeller gulvlampe
-  entity_id: switch.kjeller_gulvlampe
+  - platform: switch
+    name: Kjeller gulvlampe
+    entity_id: switch.kjeller_gulvlampe
+
+  - platform: switch
+    name: Kjeller lampett 1
+    entity_id: switch.kjeller_lampett_1
+
+  - platform: switch
+    name: Kjeller lampett 2
+    entity_id: switch.kjeller_lampett_2
+
+  - platform: switch
+    name: Kjeller lampett 3
+    entity_id: switch.kjeller_lampett_3
+
+  - platform: group
+    name: Alt lys kjeller
+    entities:
+      - light.kjeller_gulvlampe
+      - light.kjeller_lampett_1
+      - light.kjeller_lampett_2
+      - light.kjeller_lampett_3
 
 timer:
   basement_light_turnoff:
@@ -14,68 +34,68 @@ timer:
 
 automation:
   - id: basement_turn_off_light_delay
-    alias: 'Basement: Turn off light delay'
+    alias: "Basement: Turn off light delay"
     trigger:
-    - platform: state
-      entity_id:  binary_sensor.bevegelse_kjellerstue
-      from: 'on'
-      to: 'off'
+      - platform: state
+        entity_id: binary_sensor.bevegelse_kjeller
+        from: "on"
+        to: "off"
     action:
-    - service: timer.start
-      data:
-        entity_id: timer.basement_light_turnoff
-      
+      - service: timer.start
+        data:
+          entity_id: timer.basement_light_turnoff
+
   - id: basement_turn_off_light
-    alias: 'Basement: Turn off light'
+    alias: "Basement: Turn off light"
     trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.basement_light_turnoff
+      - platform: event
+        event_type: timer.finished
+        event_data:
+          entity_id: timer.basement_light_turnoff
     action:
-    - service: light.turn_off
-      data:
-        entity_id: light.alt_lys_kjeller
-      
+      - service: light.turn_off
+        data:
+          entity_id: light.alt_lys_kjeller
+
   - id: basement_turn_on_light
-    alias: 'Basement: Turn on light'
+    alias: "Basement: Turn on light"
     trigger:
-    - platform: state
-      entity_id:  binary_sensor.bevegelse_kjellerstue
-      from: 'off'
-      to: 'on'
+      - platform: state
+        entity_id: binary_sensor.bevegelse_kjeller
+        from: "off"
+        to: "on"
     action:
-    - service: light.turn_on
-      data:
-        entity_id: light.alt_lys_kjeller
-    - service: timer.cancel
-      data:
-        entity_id: timer.basement_light_turnoff
+      - service: light.turn_on
+        data:
+          entity_id: light.alt_lys_kjeller
+      - service: timer.cancel
+        data:
+          entity_id: timer.basement_light_turnoff
 
   - id: basement_toggle_light_single_click
-    alias: 'Basement: Toggle light on single click'
-    trigger:
-    - platform: event
-      event_type: deconz_event
-      event_data:
-        id: 'kjeller'
-        event: 1002
-    action:
-    - service: light.toggle
-      entity_id: light.alt_lys_kjeller
-    - service: automation.turn_off
-      entity_id: 
-        - automation.basement_turn_on_light
-        - automation.basement_turn_off_light
-        - automation.basement_turn_off_light_delay
-
-  - id: basement_light_on_double_click
-    alias: 'Basement: Activate light automation double click'
+    alias: "Basement: Toggle light on single click"
     trigger:
       - platform: event
         event_type: deconz_event
         event_data:
-          id: 'kjeller'
+          id: "kjeller"
+          event: 1002
+    action:
+      - service: light.toggle
+        entity_id: light.alt_lys_kjeller
+      - service: automation.turn_off
+        entity_id:
+          - automation.basement_turn_on_light
+          - automation.basement_turn_off_light
+          - automation.basement_turn_off_light_delay
+
+  - id: basement_light_on_double_click
+    alias: "Basement: Activate light automation double click"
+    trigger:
+      - platform: event
+        event_type: deconz_event
+        event_data:
+          id: "kjeller"
           event: 1004
     action:
       - service: automation.turn_on
@@ -85,5 +105,3 @@ automation:
           - automation.basement_turn_on_light
       - service: automation.trigger
         entity_id: automation.basement_turn_off_light
-
-
