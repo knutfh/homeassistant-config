@@ -3,22 +3,11 @@
 ########################################
 
 sensor:
-
-# Efergy
-########################################
-  - platform: efergy
-    app_token: !secret efergy_app_token
-    utc_offset: +1
-    monitored_variables:
-      - type: current_values
-      - type: amount
-        period: day
-
-#  Tibber
-########################################
+  #  Tibber
+  ########################################
   - platform: template
     sensors:
-    # Tibbersensorer strømpris NV15
+      # Tibbersensorer strømpris NV15
       tibber_max_price:
         friendly_name: "Maxpris"
         unit_of_measurement: "NOK/kWh"
@@ -153,7 +142,6 @@ sensor:
         value_template: "{{ state_attr('sensor.real_time_consumption_norumvegen_15', 'currentL3')}}"
         icon_template: mdi:current-ac
 
-      
       ##############################
       ##### Consumption sensors NV17
       ##############################
