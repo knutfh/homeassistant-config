@@ -1,8 +1,4 @@
 ---
-hello_world:
-  module: hello
-  class: HelloWorld
-
 do_dns:
   module: do_dns
   class: DoDns
