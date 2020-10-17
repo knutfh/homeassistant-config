@@ -1,9 +1,0 @@
-- platform: yr
-  name: Vær
-  monitored_conditions:
-    - temperature
-    - symbol
-    - precipitation
-    - windSpeed
-    - cloudiness
-    - dewpointTemperature
