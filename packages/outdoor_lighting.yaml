@@ -3,43 +3,47 @@
 ########################################
 
 light:
-- platform: mqtt
-  name: "Garage outside"
-  state_topic: "stat/garage/POWER4"
-  command_topic: "cmnd/garage/POWER4"
-  availability_topic: "tele/garage/LWT"
-  qos: 1
-  payload_on: "ON"
-  payload_off: "OFF"
-  payload_available: "Online"
-  payload_not_available: "Offline"
-  retain: false
+  - platform: mqtt
+    name: "Garage outside"
+    state_topic: "stat/garage/POWER4"
+    command_topic: "cmnd/garage/POWER4"
+    availability_topic: "tele/garage/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: false
 
-- platform: mqtt
-  name: "Hagelys"
-  state_topic: "stat/hagelys/POWER"
-  command_topic: "cmnd/hagelys/POWER"
-  availability_topic: "tele/hagelys/LWT"
-  qos: 1
-  payload_on: "ON"
-  payload_off: "OFF"
-  payload_available: "Online"
-  payload_not_available: "Offline"
-  retain: false
+  - platform: mqtt
+    name: "Hagelys"
+    state_topic: "stat/hagelys/POWER"
+    command_topic: "cmnd/hagelys/POWER"
+    availability_topic: "tele/hagelys/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: false
 
 automation:
-- alias: "Outdoor lights: Sunset automation"
-  trigger:
-    platform: sun
-    event: sunset
-  action:
-    - service: light.turn_on
-      entity_id: light.garage_outside
-  
-- alias: "Outdoor lights: Sunrise automation"
-  trigger:
-    platform: sun
-    event: sunrise
-  action:
-    - service: light.turn_off
-      entity_id: light.garage_outside, light.hagelys
+  - alias: "Outdoor lights: Sunset automation"
+    trigger:
+      platform: sun
+      event: sunset
+    action:
+      - service: light.turn_on
+        entity_id:
+          - light.garage_outside
+          - light.hagelys
+
+  - alias: "Outdoor lights: Sunrise automation"
+    trigger:
+      platform: sun
+      event: sunrise
+    action:
+      - service: light.turn_off
+        entity_id:
+          - light.garage_outside
+          - light.hagelys
