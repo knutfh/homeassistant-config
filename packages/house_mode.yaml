@@ -16,10 +16,10 @@ input_select:
 binary_sensor:
   - platform: workday
     name: Workday today
-    country: 'NO'
+    country: "NO"
   - platform: workday
     name: Workday tomorrow
-    country: 'NO'
+    country: "NO"
     days_offset: 1
   - platform: template
     sensors:
@@ -36,19 +36,19 @@ script:
       - delay: 0:00:01
       - service: scene.turn_on
         entity_id: scene.nattmodus_on
-          
+
   ### Morgenmodus
   morgenmodus:
     sequence:
       - service: light.turn_off
         data:
           entity_id: light.taklys_gang, light.horus_2, light.trapp_1
-          brightness: 20
+          brightness_pct: 20
       - service: light.turn_off
         data:
           entity_id: light.kjokkenbenk, light.taklys_inngang
-          brightness: 200
-      
+          brightness_pct: 100
+
   kveldsmodus:
     sequence:
       - service: light.turn_on
@@ -62,17 +62,17 @@ automation:
   - alias: "House mode: To morning"
     trigger:
       platform: template
-      value_template: '{% if is_state("binary_sensor.workday_today", "on") and is_state("sensor.time", "05:15") or is_state("binary_sensor.workday_today", "off") and is_state("sensor.time", "08:00")-%}true{%- endif %}' 
+      value_template: '{% if is_state("binary_sensor.workday_today", "on") and is_state("sensor.time", "05:15") or is_state("binary_sensor.workday_today", "off") and is_state("sensor.time", "08:00")-%}true{%- endif %}'
     action:
       service: input_select.select_option
       data:
         entity_id: input_select.house_mode
         option: Morgen
-  
+
   - alias: "House mode: To day"
     trigger:
       platform: time
-      at: '10:00'
+      at: "10:00:00"
     action:
       service: input_select.select_option
       data:
@@ -82,11 +82,11 @@ automation:
   - alias: "House mode: To evening"
     trigger:
       platform: template
-      value_template: '{% if is_state("binary_sensor.workday_tomorrow", "on") and is_state("sensor.time", "21:00") or is_state("binary_sensor.workday_tomorrow", "off") and is_state("sensor.time", "23:45")-%}true{%- endif %}' 
+      value_template: '{% if is_state("binary_sensor.workday_tomorrow", "on") and is_state("sensor.time", "21:00") or is_state("binary_sensor.workday_tomorrow", "off") and is_state("sensor.time", "23:45")-%}true{%- endif %}'
     condition:
-        - condition: state
-          entity_id: input_select.house_mode
-          state: Dag
+      - condition: state
+        entity_id: input_select.house_mode
+        state: Dag
     action:
       service: input_select.select_option
       data:
@@ -96,7 +96,7 @@ automation:
   - alias: "House mode: To night at given time"
     trigger:
       platform: time
-      at: '02:00'
+      at: "02:00:00"
     action:
       service: input_select.select_option
       data:
@@ -116,7 +116,7 @@ automation:
     trigger:
       platform: state
       entity_id: input_select.house_mode
-      to: 'Natt'
+      to: "Natt"
     action:
       - service: script.turn_on
         entity_id: script.nattmodus
@@ -125,7 +125,7 @@ automation:
     trigger:
       platform: state
       entity_id: input_select.house_mode
-      to: 'Morgen'
+      to: "Morgen"
     action:
       - service: script.turn_on
         entity_id: script.morgenmodus
@@ -134,25 +134,25 @@ scene:
   - name: Nattmodus off
     entities:
       light.stue:
-        state: false
+        state: "off"
       light.taklys_gang:
-        state: false
+        state: "off"
       light.taklys_kjokken:
-        state: false
+        state: "off"
       light.taklys_soverom:
-        state: false
+        state: "off"
 
   - name: Nattmodus on
     entities:
       light.horus_2:
-        state: true
+        state: "on"
         brightness: 30
       light.taklys_inngang:
-        state: true
+        state: "on"
         brightness: 30
       light.trapp_1:
-        state: true
+        state: "on"
         brightness: 30
       light.kjokkenbenk:
-        state: true
+        state: "on"
         brightness: 30
