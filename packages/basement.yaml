@@ -64,6 +64,10 @@ automation:
         entity_id: binary_sensor.bevegelse_kjeller
         from: "off"
         to: "on"
+      - platform: state
+        entity_id: binary_sensor.bevegelse_kjeller_2
+        from: "off"
+        to: "on"
     action:
       - service: light.turn_on
         data:
@@ -72,36 +76,62 @@ automation:
         data:
           entity_id: timer.basement_light_turnoff
 
-  - id: basement_toggle_light_single_click
-    alias: "Basement: Toggle light on single click"
+  - id: basement_deactivate_light_automation_kjellerstue
+    alias: "Basement: Deactivate light automation kjellerstue"
     trigger:
       - platform: event
         event_type: deconz_event
         event_data:
-          id: "kjeller"
-          event: 1002
+          id: "kjellerstue"
+          event: 2001
     action:
-      - service: light.toggle
-        entity_id: light.alt_lys_kjeller
       - service: automation.turn_off
         entity_id:
           - automation.basement_turn_on_light
           - automation.basement_turn_off_light
           - automation.basement_turn_off_light_delay
 
-  - id: basement_light_on_double_click
-    alias: "Basement: Activate light automation double click"
+  - id: basement_activate_light_automation_kjellerstue
+    alias: "Basement: Activate light automation kjellerstue"
     trigger:
       - platform: event
         event_type: deconz_event
         event_data:
-          id: "kjeller"
-          event: 1004
+          id: "kjellerstue"
+          event: 1001
+      - platform: state
+        entity_id: input_select.house_mode
+        to: Kveld
+        for: 30 min
     action:
       - service: automation.turn_on
         entity_id:
+          - automation.basement_turn_on_light
           - automation.basement_turn_off_light
           - automation.basement_turn_off_light_delay
-          - automation.basement_turn_on_light
-      - service: automation.trigger
-        entity_id: automation.basement_turn_off_light
+
+  - id: basement_turn_off_light_kjellerstue
+    alias: "Basement: Turn off light"
+    trigger:
+      - platform: event
+        event_type: deconz_event
+        event_data:
+          id: "kjellerstue"
+          event: 2002
+    action:
+      - service: light.turn_off
+        entity_id:
+          - light.alt_lys_kjeller
+
+  - id: basement_turn_on_light_kjellerstue
+    alias: "Basement: Turn on light"
+    trigger:
+      - platform: event
+        event_type: deconz_event
+        event_data:
+          id: "kjellerstue"
+          event: 1002
+    action:
+      - service: light.turn_on
+        entity_id:
+          - light.alt_lys_kjeller
