@@ -1,21 +1,21 @@
 automation:
   - alias: "Livingroom: Turn off lights"
     trigger:
-    - platform: state
-      entity_id: binary_sensor.fjernkontroll_stue_3
-      to: 'off'
+      - platform: state
+        entity_id: binary_sensor.fjernkontroll_stue_3
+        to: "off"
     action:
-    - service: light.turn_off
-      entity_id: light.stue
+      - service: light.turn_off
+        entity_id: light.stue
 
   - alias: "Livingroom: Turn on lights"
     trigger:
-    - platform: state
-      entity_id: binary_sensor.fjernkontroll_stue_3
-      to: 'on'
+      - platform: state
+        entity_id: binary_sensor.fjernkontroll_stue_3
+        to: "on"
     action:
-    - service: light.turn_on
-      entity_id: light.stue
+      - service: light.turn_on
+        entity_id: light.stue
 
 script:
   sonos_dog_playlist:
@@ -32,11 +32,11 @@ script:
         data:
           entity_id: media_player.stue
           media_content_type: music
-          media_content_id: 
+          media_content_id:
 
 light:
   - platform: group
-    name: Stue
+    name: Stue_group
     entities:
       - light.trapp_1
       - light.trapp_2
@@ -82,12 +82,11 @@ light:
       - light.hund_4
 
   - platform: group
-    name: "Spisebord"
+    name: "Kontorhjørne"
     entities:
-      - light.horus_6
-      - light.horus_7
       - light.horus_8
       - light.horus_9
+      - light.horus_10
 
   - platform: group
     name: "Valpehage"
@@ -96,3 +95,4 @@ light:
       - light.trapp_7
       - light.trapp_8
       - light.horus_5
+      - light.horus_6
