@@ -4,11 +4,9 @@ climate:
     heater: switch.basement_office_heater
     target_sensor: sensor.t10_temperature
 
-
 input_number:
   office_heat_on:
-    name: 'Office heater off delay'
-    initial: 30
+    name: "Office heater off delay"
     min: 5
     max: 600
     step: 5
@@ -23,23 +21,22 @@ input_number:
     max: 25
     step: 1
 
-
-
 timer:
   office_heat_on:
-    name: "Office heat on"
-      
-      # >- 
+    name:
+      "Office heat on"
+
+      # >-
       #  "{{states('input_number.office_heat_on')|int|multiply(60)| timestamp_custom('%H:%M:%S', 0)}}"
 
 automation:
   - id: office_turn_on_heater_on_motion
-    alias: 'Office: Set temperature on motion'
+    alias: "Office: Set temperature on motion"
     trigger:
-    - platform: state
-      entity_id: binary_sensor.bevegelse_kontor
-      from: "off"
-      to: "on"
+      - platform: state
+        entity_id: binary_sensor.bevegelse_kontor
+        from: "off"
+        to: "on"
     action:
       - service: timer.start
         data:

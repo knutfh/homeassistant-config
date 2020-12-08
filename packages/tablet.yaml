@@ -7,7 +7,6 @@ rest_command:
   kiosk_command:
     url: !secret tablet_rest_url
 
-
 light:
   - platform: template
     lights:
@@ -28,8 +27,7 @@ light:
           data_template:
             cmd: setStringSetting
             key: screenBrightness
-            value: '{{ brightness }}'
-
+            value: "{{ brightness }}"
 
 ### Automations
 automation:
@@ -38,10 +36,10 @@ automation:
     trigger:
       - platform: state
         entity_id: input_select.house_mode
-        to: Kveld 
-    action: 
+        to: Kveld
+    action:
       service: light.turn_on
-      data_template: 
+      data_template:
         entity_id: light.tablet_backlight
         brightness_pct: 20
 
@@ -50,10 +48,10 @@ automation:
     trigger:
       - platform: state
         entity_id: input_select.house_mode
-        to: Morgen 
-    action: 
+        to: Morgen
+    action:
       service: light.turn_on
-      data_template: 
+      data_template:
         entity_id: light.tablet_backlight
         brightness_pct: 80
 
@@ -95,4 +93,4 @@ sensor:
       - startUrl
       - currentPage
     resource: !secret tablet_rest_info_url
-    value_template: '{{ value_json.batteryLevel }}'
+    value_template: "{{ value_json.batteryLevel }}"
