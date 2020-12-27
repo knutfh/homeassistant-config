@@ -1,4 +1,0 @@
-- name: TINE Meieriet Oslo
-  latitude: !secret tine_lat
-  longitude: !secret tine_lon
-  radius: 250
