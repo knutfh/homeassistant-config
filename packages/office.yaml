@@ -1,8 +1,7 @@
 climate:
-  - platform: generic_thermostat
-    name: Termostat kontor kjeller
-    heater: switch.basement_office_heater
-    target_sensor: sensor.t10_temperature
+  - platform: adax
+    account_id: !secret adax_account_id
+    password: !secret adax_password
 
 input_number:
   office_heat_on:
