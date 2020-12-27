@@ -1,9 +1,10 @@
-  auto_start: False
-  filter:
-    include_entities:
-      - light.nattbordslampe
-      - light.taklys_gang
-      - light.taklys_soverom
-      - light.taklys_kjokken
-      - light.garage_center
-      - light.hagelys
+auto_start: False
+filter:
+  include_entities:
+    - light.nattbordslampe
+    - light.taklys_gang
+    - light.taklys_soverom
+    - light.taklys_kjokken
+    - light.garage_center
+    - light.hagelys
+    - light.alt_lys_kjeller
