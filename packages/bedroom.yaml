@@ -23,7 +23,7 @@ automation:
       - platform: event
         event_type: deconz_event
         event_data:
-          id: "taklys_soverom"
+          id: "multibryter_soverom"
           event: 1002
     action:
       - service: light.toggle
@@ -34,7 +34,7 @@ automation:
       - platform: event
         event_type: deconz_event
         event_data:
-          id: "taklys_soverom"
+          id: "multibryter_soverom"
           event: 5002
     condition:
       - condition: time
@@ -50,7 +50,7 @@ automation:
       - platform: event
         event_type: deconz_event
         event_data:
-          id: "taklys_soverom"
+          id: "multibryter_soverom"
           event: 5002
     condition:
       - condition: time
