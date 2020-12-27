@@ -1,35 +1,35 @@
-  - platform: mjpeg
-    mjpeg_url: "http://10.0.10.9:81/mjpg/Inngang/video.mjpeg"
-    name: Inngang
-    username: !secret port_camera_username
-    password: !secret port_camera_password
-    authentication: basic
-    verify_ssl: false
+- platform: mjpeg
+  mjpeg_url: "http://bi.hnsn.no:81/mjpg/Inngang/video.mjpeg"
+  name: Inngang
+  username: !secret port_camera_username
+  password: !secret port_camera_password
+  authentication: basic
+  verify_ssl: false
 
-  - platform: mjpeg
-    mjpeg_url: "http://10.0.10.9:81/mjpg/Valp/video.mjpeg"
-    name: Valperom
-    username: !secret port_camera_username
-    password: !secret port_camera_password
-    authentication: basic
-    verify_ssl: false
+- platform: mjpeg
+  mjpeg_url: "http://bi.hnsn.no:81/mjpg/Valp/video.mjpeg"
+  name: Valperom
+  username: !secret port_camera_username
+  password: !secret port_camera_password
+  authentication: basic
+  verify_ssl: false
 
-  - platform: generic
-    still_image_url: !secret meteogram_url
-    name: Meteogram
+- platform: generic
+  still_image_url: !secret meteogram_url
+  name: Meteogram
 
-  - platform: mjpeg
-    mjpeg_url: "http://10.0.10.9:81/mjpg/Port/video.mjpeg"
-    name: Port
-    username: !secret port_camera_username
-    password: !secret port_camera_password
-    authentication: basic
-    verify_ssl: false
+- platform: mjpeg
+  mjpeg_url: "http://bi.hnsn.no:81/mjpg/Port/video.mjpeg"
+  name: Port
+  username: !secret port_camera_username
+  password: !secret port_camera_password
+  authentication: basic
+  verify_ssl: false
 
-  - platform: mjpeg
-    mjpeg_url: "http://10.0.10.9:81/mjpg/NV17/video.mjpeg"
-    name: NV17
-    username: !secret port_camera_username
-    password: !secret port_camera_password
-    authentication: basic
-    verify_ssl: false
+- platform: mjpeg
+  mjpeg_url: "http://bi.hnsn.no:81/mjpg/NV17/video.mjpeg"
+  name: NV17
+  username: !secret port_camera_username
+  password: !secret port_camera_password
+  authentication: basic
+  verify_ssl: false
