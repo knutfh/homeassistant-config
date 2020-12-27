@@ -1,7 +1,12 @@
 homeassistant:
   auth_providers:
-   - type: homeassistant
+    - type: homeassistant
   packages: !include_dir_named packages
+
+  customize:
+    sensor.tablet_rest:
+      device_class: battery
+      unit_of_measurement: "%"
 
 config:
 conversation:
@@ -29,8 +34,9 @@ recorder:
 logger:
   default: warning
   logs:
-    homeassistant.components.rfxtrx: debug
-    custom_components.volkswagencarnet: error
+    homeassistant.components.rfxtrx: error
+    custom_components.volkswagencarnet: debug
+    homeassistant.components.mqtt: debug
 
 http:
   use_x_forwarded_for: true
@@ -50,17 +56,14 @@ influxdb:
   max_retries: 3
   default_measurement: state
 
-
 ############################################
 # Includes
 ############################################
 automation: !include automations.yaml
 camera: !include cameras.yaml
-homekit: !include homekit.yaml
 light: !include lights.yaml
 scene: !include_dir_merge_list scenes
 sensor: !include_dir_merge_list sensors
-zone: !include_dir_merge_list zone
 
 browser_mod:
   prefix: "browser_"
@@ -72,21 +75,13 @@ browser_mod:
     8345a03b-dab7ee22:
       name: tablet
 
-
-############################################ 
+############################################
 # Text to speech
 ############################################
 tts:
   - platform: google_translate
     service_name: google_say
-    language: 'no'
-
-
-############################################
-# Device Trackers
-############################################
-device_tracker:
-
+    language: "no"
 
 ############################################
 # Tibber
