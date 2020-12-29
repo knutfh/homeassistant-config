@@ -1,30 +1,35 @@
-automation:
-  - alias: "Bathroom: Turn on lights"
-    trigger:
-      platform: state
-      entity_id: binary_sensor.bathroom_movement
-      to: "on"
-    condition:
-      - condition: numeric_state
-        entity_id: sensor.bathroom_multisensor_luminance
-        below: "600"
-    action:
-      - service: homeassistant.turn_on
-        entity_id: switch.bathroom_ceiling_light
-      # - service: notify.ios_knut_iphone
-      #   data:
-      #     message: "Baderomslys PÅ"
+light:
+  - platform: switch
+    name: Taklys bad
+    entity_id: switch.bathroom_ceiling_light
 
-  - alias: "Bathroom: Turn off lights"
-    trigger:
-      platform: state
-      entity_id: binary_sensor.bathroom_movement
-      to: "off"
-      for:
-        minutes: "10"
-    action:
-      - service: homeassistant.turn_off
-        entity_id: switch.bathroom_ceiling_light
-      # - service: notify.ios_knut_iphone
-      #   data:
-      #     message: "Baderomslys AV"
+    # automation:
+#   - alias: "Bathroom: Turn on lights"
+#     trigger:
+#       platform: state
+#       entity_id: binary_sensor.bathroom_movement
+#       to: "on"
+#     condition:
+#       - condition: numeric_state
+#         entity_id: sensor.bathroom_multisensor_luminance
+#         below: "600"
+#     action:
+#       - service: homeassistant.turn_on
+#         entity_id: switch.bathroom_ceiling_light
+#       # - service: notify.ios_knut_iphone
+#       #   data:
+#       #     message: "Baderomslys PÅ"
+
+#   - alias: "Bathroom: Turn off lights"
+#     trigger:
+#       platform: state
+#       entity_id: binary_sensor.bathroom_movement
+#       to: "off"
+#       for:
+#         minutes: "10"
+#     action:
+#       - service: homeassistant.turn_off
+#         entity_id: switch.bathroom_ceiling_light
+#       # - service: notify.ios_knut_iphone
+#       #   data:
+#       #     message: "Baderomslys AV"

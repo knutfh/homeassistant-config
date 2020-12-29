@@ -42,3 +42,27 @@
   - data: {}
     entity_id: switch.tablet_power_switch
     service: switch.turn_on
+- id: '1603953978571'
+  alias: 'Tablet: Periodic power on'
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: /15
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 3676dd2b459549c5ae06f4b9cfc667c4
+    entity_id: switch.tablet_power_switch
+    domain: switch
+  mode: single
+- id: '1609146235387'
+  alias: 'Bad: Taklys'
+  description: ''
+  use_blueprint:
+    path: homeassistant/motion_light.yaml
+    input:
+      no_motion_wait: '660'
+      motion_entity: binary_sensor.bathroom_movement
+      light_target:
+        entity_id:
+        - light.taklys_bad
