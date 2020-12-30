@@ -27,55 +27,7 @@ light:
       - light.kjeller_lampett_2
       - light.kjeller_lampett_3
 
-timer:
-  basement_light_turnoff:
-    name: Time remaining
-    duration: 600
-
 automation:
-  - id: basement_turn_off_light_delay
-    alias: "Basement: Turn off light delay"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.bevegelse_kjeller
-        from: "on"
-        to: "off"
-    action:
-      - service: timer.start
-        data:
-          entity_id: timer.basement_light_turnoff
-
-  - id: basement_turn_off_light
-    alias: "Basement: Turn off light"
-    trigger:
-      - platform: event
-        event_type: timer.finished
-        event_data:
-          entity_id: timer.basement_light_turnoff
-    action:
-      - service: light.turn_off
-        data:
-          entity_id: light.alt_lys_kjeller
-
-  - id: basement_turn_on_light
-    alias: "Basement: Turn on light"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.bevegelse_kjeller
-        from: "off"
-        to: "on"
-      - platform: state
-        entity_id: binary_sensor.bevegelse_kjeller_2
-        from: "off"
-        to: "on"
-    action:
-      - service: light.turn_on
-        data:
-          entity_id: light.alt_lys_kjeller
-      - service: timer.cancel
-        data:
-          entity_id: timer.basement_light_turnoff
-
   - id: basement_deactivate_light_automation_kjellerstue
     alias: "Basement: Deactivate light automation kjellerstue"
     trigger:
@@ -87,9 +39,7 @@ automation:
     action:
       - service: automation.turn_off
         entity_id:
-          - automation.basement_turn_on_light
-          - automation.basement_turn_off_light
-          - automation.basement_turn_off_light_delay
+          - automation.basement_lightsensor
 
   - id: basement_activate_light_automation_kjellerstue
     alias: "Basement: Activate light automation kjellerstue"
@@ -106,9 +56,7 @@ automation:
     action:
       - service: automation.turn_on
         entity_id:
-          - automation.basement_turn_on_light
-          - automation.basement_turn_off_light
-          - automation.basement_turn_off_light_delay
+          - automation.basement_lightsensor
 
   - id: basement_turn_off_light_kjellerstue
     alias: "Basement: Turn off light"
