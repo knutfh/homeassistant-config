@@ -66,3 +66,45 @@
       light_target:
         entity_id:
         - light.taklys_bad
+- id: '1609278186616'
+  alias: 'Basement: Lightsensor'
+  description: ''
+  use_blueprint:
+    path: homeassistant/motion_light.yaml
+    input:
+      no_motion_wait: '600'
+      motion_entity: binary_sensor.bevegelse_kjeller
+      light_target:
+        entity_id: light.alt_lys_kjeller
+- id: '1609321336503'
+  alias: 'Kjøkken: Lys kjøkkenbenk IKEA multiswitch'
+  description: ''
+  use_blueprint:
+    path: knutfh/deconz-ikea-five-button-remote-universal.yaml
+    input:
+      remote: 11f3fd57248848539be135ab70a94a8d
+      button_center_short:
+      - type: turn_off
+        device_id: e1bb94c8549969aea888acd1922ab6a0
+        entity_id: light.kjokkenbenk
+        domain: light
+      button_top_short:
+      - service: light.turn_on
+        data:
+          brightness: 255
+        entity_id: light.kjokkenbenk
+      button_bottom_short:
+      - service: light.turn_on
+        data:
+          brightness: 128
+        entity_id: light.kjokkenbenk
+      button_left_short:
+      - service: light.turn_on
+        data:
+          brightness: 192
+        entity_id: light.kjokkenbenk
+      button_right_short:
+      - service: light.turn_on
+        data:
+          brightness: 64
+        entity_id: light.kjokkenbenk

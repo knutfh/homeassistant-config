@@ -1,0 +1,117 @@
+blueprint:
+  name: deCONZ - IKEA five button remote for lights
+  description: "Control lights with an IKEA five button remote (the round ones).
+
+    All buttons can be assigned to a short and long button press
+    action. This allows you to assign, e.g., a scene or anything else. "
+  domain: automation
+  input:
+    remote:
+      name: Remote
+      description: IKEA remote to use
+      selector:
+        device:
+          integration: deconz
+          manufacturer: IKEA of Sweden
+          model: TRADFRI remote control
+    button_center_short:
+      name: Center button - short press
+      description: Action to run on short center button press
+      default: []
+      selector:
+        action: {}
+    button_center_long:
+      name: Center button - long press
+      description: Action to run on long center button press
+      default: []
+      selector:
+        action: {}
+    button_top_short:
+      name: Top button - short press
+      description: Action to run on short top button press
+      default: []
+      selector:
+        action: {}
+    button_top_long:
+      name: Top button - long press
+      description: Action to run on long top button press
+      default: []
+      selector:
+        action: {}
+    button_bottom_short:
+      name: Bottom button - short press
+      description: Action to run on short bottom button press
+      default: []
+      selector:
+        action: {}
+    button_bottom_long:
+      name: Bottom button - long press
+      description: Action to run on long bottom button press
+      default: []
+      selector:
+        action: {}
+    button_left_short:
+      name: Left button - short press
+      description: Action to run on short left button press
+      default: []
+      selector:
+        action: {}
+    button_left_long:
+      name: Left button - long press
+      description: Action to run on long left button press
+      default: []
+      selector:
+        action: {}
+    button_right_short:
+      name: Right button - short press
+      description: Action to run on short right button press
+      default: []
+      selector:
+        action: {}
+    button_right_long:
+      name: Right button - long press
+      description: Action to run on long right button press
+      default: []
+      selector:
+        action: {}
+mode: restart
+max_exceeded: silent
+trigger:
+  - platform: event
+    event_type: deconz_event
+    event_data:
+      device_id: !input "remote"
+action:
+  - variables:
+      event: "{{ trigger.event.data.event }}"
+  - choose:
+      - conditions:
+          - "{{ event == 1002 }}"
+        sequence: !input "button_center_short"
+      - conditions:
+          - "{{ event == 1001 }}"
+        sequence: !input "button_center_long"
+      - conditions:
+          - "{{ event == 2002 }}"
+        sequence: !input "button_top_short"
+      - conditions:
+          - "{{ event == 2001 }}"
+        sequence: !input "button_top_long"
+      - conditions:
+          - "{{ event == 3002 }}"
+        sequence: !input "button_bottom_short"
+      - conditions:
+          - "{{ event == 3001 }}"
+        sequence: !input "button_bottom_long"
+      - conditions:
+          - "{{ event == 4002 }}"
+        sequence: !input "button_left_short"
+      - conditions:
+          - "{{ event == 4001 }}"
+        sequence: !input "button_left_long"
+      - conditions:
+          - "{{ event == 5002 }}"
+        sequence: !input "button_right_short"
+      - conditions:
+          - "{{ event == 5001 }}"
+        sequence: !input "button_right_long"
