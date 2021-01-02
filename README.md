@@ -2,8 +2,7 @@
 
 This is my [Home Assistant](https://www.home-assistant.io) configuration.
 
-I'm running Ubuntu 16.04.4 (Xenial) on an old laptop, and have installed [Hass.io](https://www.home-assistant.io/hassio/). 
-I'm running a slew of different services in the same Docker environment, and use [Portainer](https://portainer.io) to manage it all.
+I run HassOS under Proxmox on an old laptop. Proxmox also hosts an Ubuntu VM that runs Docker to host Caddy and some other utilities.
 
 - [Caddy](https://caddyserver.com) as a reverse proxy.
 - [BlueIris](https://blueirissoftware.com) for surveillance.
