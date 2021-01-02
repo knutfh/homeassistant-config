@@ -21,8 +21,8 @@
   alias: Tablet cycle power
   description: ""
   trigger:
-    - above: "0"
-      below: "100"
+    - above: 0
+      below: 100
       entity_id: sensor.tablet_rest
       platform: numeric_state
   condition: []
