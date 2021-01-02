@@ -1,110 +1,102 @@
-- alias: Start HomeKit
-  trigger:
-  - platform: event
-    event_type: zwave.network_ready
-  - platform: event
-    event_type: zwave.network_complete
-  action:
-  - service: homekit.start
-  id: 71f013a0065d4d7eb28363dd4d2ad19c
-- id: '1584906173138'
+- id: "1584906173138"
   alias: HASS update available
   description: Notify Knut that a HASS update is available
   trigger:
-  - entity_id: binary_sensor.updater
-    from: '''off'''
-    platform: state
-    to: '''on'''
+    - entity_id: binary_sensor.updater
+      from: "'off'"
+      platform: state
+      to: "'on'"
   condition: []
   action:
-  - data_template:
-      title: Home Assistant-oppdatering
-      message: Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version')
-        }} er nå tilgjengelig.
-      data:
-        attachment:
-          url: '{{ state_attr(''binary_sensor.updater'', ''release_notes'') }}'
-    service: notify.mobile_app_knut_iphone
-- id: '1591439705611'
+    - data_template:
+        title: Home Assistant-oppdatering
+        message:
+          Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version')
+          }} er nå tilgjengelig.
+        data:
+          attachment:
+            url: "{{ state_attr('binary_sensor.updater', 'release_notes') }}"
+      service: notify.mobile_app_knut_iphone
+- id: "1591439705611"
   alias: Tablet cycle power
-  description: ''
+  description: ""
   trigger:
-  - above: '0'
-    below: '100'
-    entity_id: sensor.tablet_rest
-    platform: numeric_state
+    - above: "0"
+      below: "100"
+      entity_id: sensor.tablet_rest
+      platform: numeric_state
   condition: []
   action:
-  - data: {}
-    entity_id: switch.tablet_power_switch
-    service: switch.turn_off
-  - delay: 00:00:01
-  - data: {}
-    entity_id: switch.tablet_power_switch
-    service: switch.turn_on
-- id: '1603953978571'
-  alias: 'Tablet: Periodic power on'
-  description: ''
+    - data: {}
+      entity_id: switch.tablet_power_switch
+      service: switch.turn_off
+    - delay: 00:00:01
+    - data: {}
+      entity_id: switch.tablet_power_switch
+      service: switch.turn_on
+- id: "1603953978571"
+  alias: "Tablet: Periodic power on"
+  description: ""
   trigger:
-  - platform: time_pattern
-    minutes: /15
+    - platform: time_pattern
+      minutes: /15
   condition: []
   action:
-  - type: turn_on
-    device_id: 3676dd2b459549c5ae06f4b9cfc667c4
-    entity_id: switch.tablet_power_switch
-    domain: switch
+    - type: turn_on
+      device_id: 3676dd2b459549c5ae06f4b9cfc667c4
+      entity_id: switch.tablet_power_switch
+      domain: switch
   mode: single
-- id: '1609146235387'
-  alias: 'Bad: Taklys'
-  description: ''
+- id: "1609146235387"
+  alias: "Bad: Taklys"
+  description: ""
   use_blueprint:
     path: homeassistant/motion_light.yaml
     input:
-      no_motion_wait: '660'
+      no_motion_wait: "660"
       motion_entity: binary_sensor.bathroom_movement
       light_target:
         entity_id:
-        - light.taklys_bad
-- id: '1609278186616'
-  alias: 'Basement: Lightsensor'
-  description: ''
+          - light.taklys_bad
+- id: "1609278186616"
+  alias: "Basement: Lightsensor"
+  description: ""
   use_blueprint:
     path: homeassistant/motion_light.yaml
     input:
-      no_motion_wait: '600'
+      no_motion_wait: "600"
       motion_entity: binary_sensor.bevegelse_kjeller
       light_target:
         entity_id: light.alt_lys_kjeller
-- id: '1609321336503'
-  alias: 'Kjøkken: Lys kjøkkenbenk IKEA multiswitch'
-  description: ''
+- id: "1609321336503"
+  alias: "Kjøkken: Lys kjøkkenbenk IKEA multiswitch"
+  description: ""
   use_blueprint:
     path: knutfh/deconz-ikea-five-button-remote-universal.yaml
     input:
       remote: 11f3fd57248848539be135ab70a94a8d
       button_center_short:
-      - type: turn_off
-        device_id: e1bb94c8549969aea888acd1922ab6a0
-        entity_id: light.kjokkenbenk
-        domain: light
+        - type: turn_off
+          device_id: e1bb94c8549969aea888acd1922ab6a0
+          entity_id: light.kjokkenbenk
+          domain: light
       button_top_short:
-      - service: light.turn_on
-        data:
-          brightness: 255
-        entity_id: light.kjokkenbenk
+        - service: light.turn_on
+          data:
+            brightness: 255
+          entity_id: light.kjokkenbenk
       button_bottom_short:
-      - service: light.turn_on
-        data:
-          brightness: 128
-        entity_id: light.kjokkenbenk
+        - service: light.turn_on
+          data:
+            brightness: 128
+          entity_id: light.kjokkenbenk
       button_left_short:
-      - service: light.turn_on
-        data:
-          brightness: 192
-        entity_id: light.kjokkenbenk
+        - service: light.turn_on
+          data:
+            brightness: 192
+          entity_id: light.kjokkenbenk
       button_right_short:
-      - service: light.turn_on
-        data:
-          brightness: 64
-        entity_id: light.kjokkenbenk
+        - service: light.turn_on
+          data:
+            brightness: 64
+          entity_id: light.kjokkenbenk
